@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Controller.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/purple_300"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTieuDeQL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="QUẢN LÝ THIẾT BỊ TRƯỜNG HỌC"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/wave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/txtUser"
+            android:layout_marginTop="48dp"
+            android:hint="Tên đăng nhập"
+            android:text="NV01"
+            android:drawableStart="@drawable/ic_person_login"
+            style="@style/style_login_txtdangnhap" />
+
+        <EditText
+            android:id="@+id/txtPass"
+            android:layout_marginTop="16dp"
+            android:hint="Mật khẩu"
+            android:inputType="textPassword"
+            android:text="02042000"
+            android:drawableStart="@drawable/ic_lock_login"
+            style="@style/style_login_txtdangnhap"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginEnd="48dp"
+            android:background="@drawable/round_border_onclick"
+            android:text="ĐĂNG NHẬP"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvForgotPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text=" Quên mật khẩu?"
+                android:textColor="@color/purple_300"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
