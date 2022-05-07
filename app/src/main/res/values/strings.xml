@@ -1,3 +1,39 @@
 <resources>
-    <string name="app_name">DeviceManager_API</string>
+    <string name="app_name">Device Management</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="phongHoc">Phòng học</string>
+    <string name="maPhong">Mã phòng</string>
+    <string name="maPH">Mã phòng học</string>
+    <string name="maPM">Mã phòng mượn</string>
+    <string name="loaiPH">Loại phòng hoc</string>
+    <string name="tang">Tầng</string>
+
+    <string name="ctsd">Chi tiết sử dụng</string>
+
+    <string name="nhanVien">Nhân viên</string>
+    <string name="maNV">Mã nhân viên</string>
+    <string name="tenNV">Tên nhân viên</string>
+    <string name="email">Email</string>
+
+    <string name="thongKe">Thống kê</string>
+
+    <string name="maTB">Mã thiết bị</string>
+    <string name="tenTB">Tên thiết bị</string>
+    <string name="thietBi">Thiết bị</string>
+    <string name="loaiTB">Loại thiết bị</string>
+    <string name="maLoaiTB">Mã loại thiết bị</string>
+    <string name="tenTBmuon">Tên thiết bị mượn</string>
+    <string name="tenLoaiTB">Tên loại thiết bị</string>
+    <string name="xuatXu">Xuất xứ</string>
+
+    <string name="sl">Số lượng</string>
+    <string name="slmuon">Số lượng mượn</string>
+    <string name="soldu">Số lượng còn lại</string>
+
+    <string name="ngayMuon">Ngày mượn</string>
+    <string name="ngaySD">Ngày sử dụng</string>
+
+    <string name="erorr_soLuongMuon">Vui lòng nhập số lượng bé hơn bằng </string>
+    <string name="erorr_soLuongTrong">Vui lòng nhập số lượng!</string>
 </resources>
