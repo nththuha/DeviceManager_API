@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/ic_bg"
+    tools:context=".Controller.PhongHocActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground">
+
+        <ImageButton
+            android:id="@+id/imbBack"
+            style="@style/style_img_btnback"
+            android:src="@drawable/ic_arrow_back"/>
+
+        <TextView
+            android:text="QUẢN LÝ PHÒNG HỌC"
+            style="@style/style_tieude_QuanLy" />
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <SearchView
+        android:id="@+id/svPH"
+        style="@style/style_text_search" />
+
+    <TextView
+        android:text="DANH SÁCH PHÒNG HỌC"
+        style="@style/style_tieude_DanhSach" />
+
+    <Spinner
+        android:id="@+id/snPH"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@android:color/transparent"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="75dp"
+            android:text="Mã"
+            style="@style/style_text_lv_phonghoc" />
+        <TextView
+            android:text="@string/loaiPH"
+            style="@style/style_text_lv_phonghoc"
+            android:layout_marginStart="5dp"
+            android:layout_width="120dp"/>
+        <TextView
+            android:layout_marginStart="20dp"
+            android:layout_width="55dp"
+            android:text="@string/tang"
+            style="@style/style_text_lv_phonghoc"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvPH"
+        android:layout_width="wrap_content"
+        android:layout_height="380dp" />
+
+    <ImageButton
+        android:id="@+id/imbThemPH"
+        style="@style/button_add"
+        android:layout_marginTop="5dp"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+</LinearLayout>
