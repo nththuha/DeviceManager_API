@@ -20,10 +20,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.devicemanager_api.API.LoaiThietBiAPI;
+import com.example.devicemanager_api.Controller.LoaiThietBiActivity;
 import com.example.devicemanager_api.Entity.LoaiThietBiEntity;
 import com.example.devicemanager_api.R;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AdapterLoaiThietBi extends ArrayAdapter<LoaiThietBiEntity> {
     Context context;
@@ -67,157 +73,187 @@ public class AdapterLoaiThietBi extends ArrayAdapter<LoaiThietBiEntity> {
         imbSua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                suaLTB(Gravity.CENTER, loaiThietBi.getMaLoai(), loaiThietBi.getTenLoai());
+                suaLTB(Gravity.CENTER, loaiThietBi.getMaLoaiTB(), loaiThietBi.getTenLoaiTB());
             }
         });
 
         imbXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                xoaLTB(Gravity.CENTER, loaiThietBi.getMaLoai());
+                xoaLTB(Gravity.CENTER, loaiThietBi.getMaLoaiTB());
             }
         });
 
         return convertView;
     }
 
-//    private void suaLTB(int gravity, String maLoai, String tenLoai){
-//        dbLoaiThietBi = new DBLoaiThietBi(context);
-//
-//        final Dialog dialog = new Dialog(context);
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setContentView(R.layout.activity_dialog_themltb);
-//
-//        Window window = dialog.getWindow();
-//        if (window == null)
-//            return;
-//        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-//        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//
-//        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-//        windowAttributes.gravity = gravity;
-//        window.setAttributes(windowAttributes);
-//
-//        //click ra bên ngoài để tắt dialog
-//        if (Gravity.CENTER == gravity) {
-//            dialog.setCancelable(false);
-//        } else {
-//            dialog.setCancelable(false);
-//        }
-//
-//        btnLuu = dialog.findViewById(R.id.btnLuu);
-//        btnThoat = dialog.findViewById(R.id.btnThoat);
-//        txtMaLTB = dialog.findViewById(R.id.txtMaLTB);
-//        txtTenLTB = dialog.findViewById(R.id.txtTenLTB);
-//        tvTieuDe = dialog.findViewById(R.id.tvTieuDe);
-//
-//        tvTieuDe.setText("CHỈNH SỬA LOẠI THIẾT BỊ");
-//
-//        txtMaLTB.setEnabled(false);
-//        txtMaLTB.setText(maLoai);
-//        txtTenLTB.setText(tenLoai);
-//
-//        btnLuu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String maLTB = txtMaLTB.getText().toString();
-//                String tenLTB = txtTenLTB.getText().toString();
-//                if(maLTB.equals("")){
-//                    Toast.makeText(context, "Mã loại thiết bị không được để trống!", Toast.LENGTH_SHORT);
-//                    return;
-//                }
-//                if(tenLTB.equals("")){
-//                    Toast.makeText(context, "Tên loại thiết bị không được để trống!", Toast.LENGTH_SHORT);
-//                    return;
-//                }
-//                thongBaoThanhCong(Gravity.CENTER,"Cập nhật thông tin thành công!");
-//                dbLoaiThietBi.suaLTB(new LoaiThietBi(maLTB, tenLTB));
-//                dialog.dismiss();
-//                ((LoaiThietBiActivity)context).loadListView(dbLoaiThietBi);
-//            }
-//        });
-//
-//        btnThoat.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                dialog.dismiss();
-//            }
-//        });
-//        dialog.show();
-//    }
+    private void suaLTB(int gravity, String maLoai, String tenLoai){
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.activity_dialog_themltb);
 
-//    private void xoaLTB(int gravity, String maLoai){
-//        dbLoaiThietBi = new DBLoaiThietBi(context);
-//
-//        final Dialog dialog = new Dialog(context);
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setContentView(R.layout.activity_dialog_xoaltb);
-//
-//        Window window = dialog.getWindow();
-//        if (window == null)
-//            return;
-//        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-//        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//
-//        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-//        windowAttributes.gravity = gravity;
-//        window.setAttributes(windowAttributes);
-//
-//        //click ra bên ngoài để tắt dialog
-//        if (Gravity.CENTER == gravity) {
-//            dialog.setCancelable(false);
-//        } else {
-//            dialog.setCancelable(false);
-//        }
-//
-//        btnKhongXoa = dialog.findViewById(R.id.btnKhongXoa);
-//        btnDongYXoa = dialog.findViewById(R.id.btnDongYXoa);
-//        tvConfirmXoa = dialog.findViewById(R.id.tvConfirmXoa);
-//
-//        tvConfirmXoa.setText("Bạn có thật sự muốn xóa " + maLoai + "?");
-//
-//        btnDongYXoa.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                thongBaoThanhCong(Gravity.CENTER,"Xóa thành công!");
-//                dbLoaiThietBi.xoaLTB(maLoai);
-//                dialog.dismiss();
-//                ((LoaiThietBiActivity)context).loadListView(dbLoaiThietBi);
-//            }
-//        });
-//
-//        btnKhongXoa.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                dialog.dismiss();
-//            }
-//        });
-//        dialog.show();
-//    }
-//    private void thongBaoThanhCong(int gravity, String text) {
-//        //xử lý vị trí của dialog
-//        final Dialog dialog = new Dialog(context);
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setContentView(R.layout.activity_dialog_tbthanhcong);
-//
-//        Window window = dialog.getWindow();
-//        if (window == null)
-//            return;
-//        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-//        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//
-//        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-//        windowAttributes.gravity = gravity;
-//        window.setAttributes(windowAttributes);
-//
-//        //click ra bên ngoài để tắt dialog
-//        if (Gravity.CENTER == gravity) {
-//            dialog.setCancelable(true);
-//        } else {
-//            dialog.setCancelable(true);
-//        }
-//        TextView tvThongBao = dialog.findViewById(R.id.tvThongBao);
-//        tvThongBao.setText(text);
-//        dialog.show();
-//    }
+        Window window = dialog.getWindow();
+        if (window == null)
+            return;
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+
+        //click ra bên ngoài để tắt dialog
+        if (Gravity.CENTER == gravity) {
+            dialog.setCancelable(false);
+        } else {
+            dialog.setCancelable(false);
+        }
+
+        btnLuu = dialog.findViewById(R.id.btnLuu);
+        btnThoat = dialog.findViewById(R.id.btnThoat);
+        txtMaLTB = dialog.findViewById(R.id.txtMaLTB);
+        txtTenLTB = dialog.findViewById(R.id.txtTenLTB);
+        tvTieuDe = dialog.findViewById(R.id.tvTieuDe);
+
+        tvTieuDe.setText("CHỈNH SỬA LOẠI THIẾT BỊ");
+
+        txtMaLTB.setEnabled(false);
+        txtMaLTB.setText(maLoai);
+        txtTenLTB.setText(tenLoai);
+
+        btnLuu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String maLTB = txtMaLTB.getText().toString();
+                String tenLTB = txtTenLTB.getText().toString();
+                if(maLTB.equals("")){
+                    Toast.makeText(context, "Mã loại thiết bị không được để trống!", Toast.LENGTH_SHORT);
+                    return;
+                }
+                if(tenLTB.equals("")){
+                    Toast.makeText(context, "Tên loại thiết bị không được để trống!", Toast.LENGTH_SHORT);
+                    return;
+                }
+                suaLTBvaoDB(new LoaiThietBiEntity(maLTB, tenLTB));
+                dialog.dismiss();
+                ((LoaiThietBiActivity)context).layDSLoaiThietBi();
+            }
+        });
+
+        btnThoat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    private void suaLTBvaoDB(LoaiThietBiEntity loaiThietBiEntity){
+        LoaiThietBiAPI.apiLoaiThietBiService.suaLoaiThietBi(loaiThietBiEntity).enqueue(new Callback<LoaiThietBiEntity>() {
+            @Override
+            public void onResponse(Call<LoaiThietBiEntity> call, Response<LoaiThietBiEntity> response) {
+                if (response.isSuccessful()) {
+                    thongBaoThanhCong(Gravity.CENTER,"Cập nhập thông tin thành công");
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoaiThietBiEntity> call, Throwable t) {
+                Toast.makeText(context, "Sửa loại thiết bị thất bại!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void xoaLTB(int gravity, String maLoai){
+
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.activity_dialog_xoaltb);
+
+        Window window = dialog.getWindow();
+        if (window == null)
+            return;
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+
+        //click ra bên ngoài để tắt dialog
+        if (Gravity.CENTER == gravity) {
+            dialog.setCancelable(false);
+        } else {
+            dialog.setCancelable(false);
+        }
+
+        btnKhongXoa = dialog.findViewById(R.id.btnKhongXoa);
+        btnDongYXoa = dialog.findViewById(R.id.btnDongYXoa);
+        tvConfirmXoa = dialog.findViewById(R.id.tvConfirmXoa);
+
+        tvConfirmXoa.setText("Bạn có thật sự muốn xóa " + maLoai + "?");
+
+        btnDongYXoa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                xoaLTBvaoDB(maLoai);
+                dialog.dismiss();
+                ((LoaiThietBiActivity)context).layDSLoaiThietBi();
+            }
+        });
+
+        btnKhongXoa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    private void xoaLTBvaoDB(String maLoai){
+        LoaiThietBiAPI.apiLoaiThietBiService.xoaLoaiThietBi(maLoai).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    thongBaoThanhCong(Gravity.CENTER,"Xóa thành công");
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(context, "Xóa loại thiết bị thất bại!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void thongBaoThanhCong(int gravity, String text) {
+        //xử lý vị trí của dialog
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.activity_dialog_tbthanhcong);
+
+        Window window = dialog.getWindow();
+        if (window == null)
+            return;
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+
+        //click ra bên ngoài để tắt dialog
+        if (Gravity.CENTER == gravity) {
+            dialog.setCancelable(true);
+        } else {
+            dialog.setCancelable(true);
+        }
+        TextView tvThongBao = dialog.findViewById(R.id.tvThongBao);
+        tvThongBao.setText(text);
+        dialog.show();
+    }
 }

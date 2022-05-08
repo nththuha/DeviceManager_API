@@ -22,9 +22,9 @@
     <string name="tenTB">Tên thiết bị</string>
     <string name="thietBi">Thiết bị</string>
     <string name="loaiTB">Loại thiết bị</string>
-    <string name="maLoaiTB">Mã loại thiết bị</string>
+    <string name="maLoaiTB">Mã loại</string>
     <string name="tenTBmuon">Tên thiết bị mượn</string>
-    <string name="tenLoaiTB">Tên loại thiết bị</string>
+    <string name="tenLoaiTB">Tên loại</string>
     <string name="xuatXu">Xuất xứ</string>
 
     <string name="sl">Số lượng</string>

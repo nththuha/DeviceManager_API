@@ -18,6 +18,11 @@ public class LoaiThietBiEntity implements Serializable {
         this.thietBis = thietBis;
     }
 
+    public LoaiThietBiEntity(String maLoaiTB, String tenLoaiTB) {
+        this.maLoaiTB = maLoaiTB;
+        this.tenLoaiTB = tenLoaiTB;
+    }
+
     public String getMaLoaiTB() {
         return maLoaiTB;
     }
