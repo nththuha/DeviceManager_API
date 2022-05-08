@@ -44,8 +44,6 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     TextView tvForgotPass, tvTieuDeQL;
 
-    public static ArrayList<TaiKhoanEntity> DSNV = new ArrayList<>();
-
     final String mail = "thuhango0204@gmail.com";
     final String password = "tvchhnsxhegolohs";
 
