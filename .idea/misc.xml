@@ -3,14 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_logout.xml" value="0.23958333333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_thongbao_dangnhap.xml" value="0.22780797101449277" />
+        <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_home.xml" value="0.23958333333333334" />
+        <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_home_fragment.xml" value="0.23958333333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_loai_thiet_bi.xml" value="0.22780797101449277" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_login.xml" value="0.176" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_phong_hoc.xml" value="0.22780797101449277" />
+        <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_tai_khoan_fragment.xml" value="0.23958333333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_thiet_bi.xml" value="0.22780797101449277" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/layout_loai_thiet_bi.xml" value="0.22780797101449277" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/layout_phong_hoc.xml" value="0.22780797101449277" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/layout_thiet_bi.xml" value="0.22780797101449277" />
+        <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/menu/activity_menu_home.xml" value="0.25" />
       </map>
     </option>
   </component>

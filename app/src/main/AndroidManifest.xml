@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DeviceManager_API">
         <activity
+            android:name=".Controller.TaiKhoanFragmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Controller.HomeFragmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Controller.HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".Controller.PhongHocActivity"
             android:exported="false" />
         <activity

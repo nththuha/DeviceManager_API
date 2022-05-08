@@ -3,6 +3,7 @@ package com.example.devicemanager_api.Controller;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -30,13 +31,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+//import javax.mail.Message;
+//import javax.mail.MessagingException;
+//import javax.mail.PasswordAuthentication;
+//import javax.mail.Session;
+//import javax.mail.Transport;
+//import javax.mail.internet.InternetAddress;
+//import javax.mail.internet.MimeMessage;
 
 public class LoginActivity extends AppCompatActivity {
     EditText txtUser, txtPass;
@@ -44,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
     TextView tvForgotPass, tvTieuDeQL;
 
     public static ArrayList<TaiKhoanEntity> DSNV = new ArrayList<>();
-    TaiKhoanEntity nhanVienDangNhap = new TaiKhoanEntity();
 
     final String mail = "thuhango0204@gmail.com";
     final String password = "tvchhnsxhegolohs";
@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<TaiKhoanEntity> call, Response<TaiKhoanEntity> response) {
                 TaiKhoanEntity tk = response.body();
                 String matKhauMoi = taoMatKhau();
-                guiMail(tk.getEmail(), matKhauMoi);
+//                guiMail(tk.getEmail(), matKhauMoi);
             }
 
             @Override
@@ -107,8 +107,19 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<TaiKhoanEntity> call, Response<TaiKhoanEntity> response) {
                 TaiKhoanEntity tk = response.body();
-                if(tk.getMatKhau().equals(txtPass.getText().toString())){
-                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                if(tk != null){
+                    if(tk.getMatKhau().equals(txtPass.getText().toString())){
+                        Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                        //sử dụng bundle gửi dữ liệu của object nhân viên
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("thong_tin_nv", tk);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        thongBao(Gravity.CENTER, "Xem lại tên đăng nhập và mật khẩu");
+                    }
                 }
                 else{
                     thongBao(Gravity.CENTER, "Xem lại tên đăng nhập và mật khẩu");
@@ -118,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<TaiKhoanEntity> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "Lấy dữ liệu thất bại", Toast.LENGTH_SHORT).show();
-                thongBao(Gravity.CENTER, "Xem lại tên đăng nhập và mật khẩu");
+
             }
         });
     }
@@ -155,32 +166,32 @@ public class LoginActivity extends AppCompatActivity {
         return value + "";
     }
 
-    private void guiMail(String mailToSend, String matKhauMoi) {
-        Properties pros = new Properties();
-        pros.put("mail.smtp.auth", "true");
-        pros.put("mail.smtp.starttls.enable", "true");
-        pros.put("mail.smtp.host", "smtp.gmail.com");
-        pros.put("mail.smtp.port", "587");
-        Session session = Session.getInstance(pros, new javax.mail.Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(mail, password);
-            }
-        });
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(mail));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailToSend));
-            message.setSubject("APP QUẢN LÝ THIẾT BỊ TRƯỜNG HỌC - LẤY LẠI MẬT KHẨU");
-            message.setText("Mật khẩu mới của bạn là: " + matKhauMoi);
-            Transport.send(message);
-            thongBao(Gravity.CENTER, "Mật khẩu mới đã được gửi vào mail!");
-
-        } catch (MessagingException e) {
-            Log.e("Lỗi", e.getMessage());
-        }
-        tvForgotPass.setEnabled(true);
-    }
+//    private void guiMail(String mailToSend, String matKhauMoi) {
+//        Properties pros = new Properties();
+//        pros.put("mail.smtp.auth", "true");
+//        pros.put("mail.smtp.starttls.enable", "true");
+//        pros.put("mail.smtp.host", "smtp.gmail.com");
+//        pros.put("mail.smtp.port", "587");
+//        Session session = Session.getInstance(pros, new javax.mail.Authenticator() {
+//            @Override
+//            protected PasswordAuthentication getPasswordAuthentication() {
+//                return new PasswordAuthentication(mail, password);
+//            }
+//        });
+//        try {
+//            Message message = new MimeMessage(session);
+//            message.setFrom(new InternetAddress(mail));
+//            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailToSend));
+//            message.setSubject("APP QUẢN LÝ THIẾT BỊ TRƯỜNG HỌC - LẤY LẠI MẬT KHẨU");
+//            message.setText("Mật khẩu mới của bạn là: " + matKhauMoi);
+//            Transport.send(message);
+//            thongBao(Gravity.CENTER, "Mật khẩu mới đã được gửi vào mail!");
+//
+//        } catch (MessagingException e) {
+//            Log.e("Lỗi", e.getMessage());
+//        }
+//        tvForgotPass.setEnabled(true);
+//    }
 
     private void startAnimation() {
         Animation animation = new AnimationUtils().loadAnimation(this, R.anim.anim);
