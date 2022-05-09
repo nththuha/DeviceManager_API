@@ -1,11 +1,13 @@
 package com.example.devicemanager_api.Controller;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -23,9 +25,18 @@ import com.example.devicemanager_api.API.TaiKhoanAPI;
 import com.example.devicemanager_api.Entity.TaiKhoanEntity;
 import com.example.devicemanager_api.R;
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Properties;
 import java.util.Random;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.SecretKeySpec;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -102,11 +113,26 @@ public class LoginActivity extends AppCompatActivity {
 
     private void xetDangNhap(){
         TaiKhoanAPI.apiTaiKhoanService.layTaiKhoan(txtUser.getText().toString()).enqueue(new Callback<TaiKhoanEntity>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(Call<TaiKhoanEntity> call, Response<TaiKhoanEntity> response) {
                 TaiKhoanEntity tk = response.body();
+                String matKhau = "";
+                try {
+                    matKhau = maHoa(txtPass.getText().toString());
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (NoSuchPaddingException e) {
+                    e.printStackTrace();
+                } catch (IllegalBlockSizeException e) {
+                    e.printStackTrace();
+                } catch (BadPaddingException e) {
+                    e.printStackTrace();
+                } catch (InvalidKeyException e) {
+                    e.printStackTrace();
+                }
                 if(tk != null){
-                    if(tk.getMatKhau().equals(txtPass.getText().toString())){
+                    if(tk.getMatKhau().equals(matKhau)){
                         Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
                         //sử dụng bundle gửi dữ liệu của object nhân viên
                         Bundle bundle = new Bundle();
@@ -194,6 +220,18 @@ public class LoginActivity extends AppCompatActivity {
     private void startAnimation() {
         Animation animation = new AnimationUtils().loadAnimation(this, R.anim.anim);
         tvTieuDeQL.setAnimation(animation);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String maHoa(String original) throws NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
+        String SECRET_KEY = "12345678";
+        SecretKeySpec skeySpec = new SecretKeySpec(SECRET_KEY.getBytes(), "DES");
+        Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5PADDING");
+        cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
+        byte[] byteEncrypted = cipher.doFinal(original.getBytes());
+        String encrypted = null;
+        encrypted = Base64.getEncoder().encodeToString(byteEncrypted);
+        return encrypted;
     }
 
     private void setConTrol() {
