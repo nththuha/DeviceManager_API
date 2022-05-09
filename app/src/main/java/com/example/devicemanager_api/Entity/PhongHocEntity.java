@@ -20,6 +20,12 @@ public class PhongHocEntity implements Serializable {
         this.chiTietSDs = chiTietSDs;
     }
 
+    public PhongHocEntity(String maPhong, String loaiPhong, int tang) {
+        this.maPhong = maPhong;
+        this.loaiPhong = loaiPhong;
+        this.tang = tang;
+    }
+
     public String getMaPhong() {
         return maPhong;
     }

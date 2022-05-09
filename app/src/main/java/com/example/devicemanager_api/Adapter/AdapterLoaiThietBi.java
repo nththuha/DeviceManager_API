@@ -40,7 +40,7 @@ public class AdapterLoaiThietBi extends ArrayAdapter<LoaiThietBiEntity> {
     EditText txtMaLTB, txtTenLTB;
     TextView tvTieuDe, tvConfirmXoa;
 
-    public void setFilterList(ArrayList<LoaiThietBiEntity> filter){
+    public void setFilterList(ArrayList<LoaiThietBiEntity> filter) {
         this.data = filter;
         notifyDataSetChanged();
     }
@@ -87,7 +87,7 @@ public class AdapterLoaiThietBi extends ArrayAdapter<LoaiThietBiEntity> {
         return convertView;
     }
 
-    private void suaLTB(int gravity, String maLoai, String tenLoai){
+    private void suaLTB(int gravity, String maLoai, String tenLoai) {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.activity_dialog_themltb);
@@ -126,17 +126,16 @@ public class AdapterLoaiThietBi extends ArrayAdapter<LoaiThietBiEntity> {
             public void onClick(View view) {
                 String maLTB = txtMaLTB.getText().toString();
                 String tenLTB = txtTenLTB.getText().toString();
-                if(maLTB.equals("")){
+                if (maLTB.equals("")) {
                     Toast.makeText(context, "Mã loại thiết bị không được để trống!", Toast.LENGTH_SHORT);
                     return;
                 }
-                if(tenLTB.equals("")){
+                if (tenLTB.equals("")) {
                     Toast.makeText(context, "Tên loại thiết bị không được để trống!", Toast.LENGTH_SHORT);
                     return;
                 }
                 suaLTBvaoDB(new LoaiThietBiEntity(maLTB, tenLTB));
                 dialog.dismiss();
-                ((LoaiThietBiActivity)context).layDSLoaiThietBi();
             }
         });
 
@@ -149,12 +148,13 @@ public class AdapterLoaiThietBi extends ArrayAdapter<LoaiThietBiEntity> {
         dialog.show();
     }
 
-    private void suaLTBvaoDB(LoaiThietBiEntity loaiThietBiEntity){
+    private void suaLTBvaoDB(LoaiThietBiEntity loaiThietBiEntity) {
         LoaiThietBiAPI.apiLoaiThietBiService.suaLoaiThietBi(loaiThietBiEntity).enqueue(new Callback<LoaiThietBiEntity>() {
             @Override
             public void onResponse(Call<LoaiThietBiEntity> call, Response<LoaiThietBiEntity> response) {
                 if (response.isSuccessful()) {
-                    thongBaoThanhCong(Gravity.CENTER,"Cập nhập thông tin thành công");
+                    thongBaoThanhCong(Gravity.CENTER, "Cập nhập thông tin thành công");
+                    ((LoaiThietBiActivity) context).layDSLoaiThietBi();
                     return;
                 }
             }
@@ -166,7 +166,7 @@ public class AdapterLoaiThietBi extends ArrayAdapter<LoaiThietBiEntity> {
         });
     }
 
-    private void xoaLTB(int gravity, String maLoai){
+    private void xoaLTB(int gravity, String maLoai) {
 
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -200,7 +200,6 @@ public class AdapterLoaiThietBi extends ArrayAdapter<LoaiThietBiEntity> {
             public void onClick(View view) {
                 xoaLTBvaoDB(maLoai);
                 dialog.dismiss();
-                ((LoaiThietBiActivity)context).layDSLoaiThietBi();
             }
         });
 
@@ -213,12 +212,13 @@ public class AdapterLoaiThietBi extends ArrayAdapter<LoaiThietBiEntity> {
         dialog.show();
     }
 
-    private void xoaLTBvaoDB(String maLoai){
+    private void xoaLTBvaoDB(String maLoai) {
         LoaiThietBiAPI.apiLoaiThietBiService.xoaLoaiThietBi(maLoai).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    thongBaoThanhCong(Gravity.CENTER,"Xóa thành công");
+                    thongBaoThanhCong(Gravity.CENTER, "Xóa thành công loại thiết bị!");
+                    ((LoaiThietBiActivity) context).layDSLoaiThietBi();
                     return;
                 }
             }

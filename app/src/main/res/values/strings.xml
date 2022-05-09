@@ -4,9 +4,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="phongHoc">Phòng học</string>
     <string name="maPhong">Mã phòng</string>
-    <string name="maPH">Mã phòng học</string>
+    <string name="maPH">Mã</string>
     <string name="maPM">Mã phòng mượn</string>
-    <string name="loaiPH">Loại phòng hoc</string>
+    <string name="loaiPH">Loại phòng</string>
     <string name="tang">Tầng</string>
 
     <string name="ctsd">Chi tiết sử dụng</string>

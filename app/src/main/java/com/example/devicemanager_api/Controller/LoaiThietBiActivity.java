@@ -126,7 +126,6 @@ public class LoaiThietBiActivity extends AppCompatActivity {
                     return;
                 }
                 themLTBvaoDB(new LoaiThietBiEntity(maLTB, tenLTB));
-                layDSLoaiThietBi();
                 dialog.dismiss();
             }
         });
@@ -146,6 +145,7 @@ public class LoaiThietBiActivity extends AppCompatActivity {
             public void onResponse(Call<LoaiThietBiEntity> call, Response<LoaiThietBiEntity> response) {
                 if (response.isSuccessful()) {
                     thongBaoThanhCong(Gravity.CENTER,"Thêm thiết bị "+loaiThietBiEntity.getTenLoaiTB()+" thành công!");
+                    layDSLoaiThietBi();
                     return;
                 }
             }

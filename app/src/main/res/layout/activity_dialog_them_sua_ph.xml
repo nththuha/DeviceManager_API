@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="28dp"
+    android:background="@drawable/round_border_while30"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTieuDe"
+        style="@style/textview_title_tb"
+        android:text="THÊM PHÒNG HỌC"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/maPH"
+                style="@style/style_themltb_tieude" />
+            <EditText
+                android:id="@+id/txtMaPhong"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/loaiPH"
+                style="@style/style_themltb_tieude" />
+            <EditText
+                android:id="@+id/txtLoaiPhong"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/tang"
+                style="@style/style_themltb_tieude" />
+            <EditText
+                android:id="@+id/txtTang"
+                android:inputType="number"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnThoat"
+            android:text="THOÁT"
+            style="@style/style_themltb_btn" />
+
+        <Button
+            android:id="@+id/btnLuu"
+            android:text="LƯU"
+            style="@style/style_themltb_btn" />
+
+    </LinearLayout>
+
+</LinearLayout>
