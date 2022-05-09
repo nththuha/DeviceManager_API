@@ -2,6 +2,7 @@ package com.example.devicemanager_api.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -41,6 +42,8 @@ public class LoaiThietBiActivity extends AppCompatActivity {
     AdapterLoaiThietBi adapterLoaiThietBi;
     public static ArrayList<LoaiThietBiEntity> DSLTB;
 
+    ArrayList<LoaiThietBiEntity> filter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,12 +60,45 @@ public class LoaiThietBiActivity extends AppCompatActivity {
                 themLTB(Gravity.CENTER);
             }
         });
+
         imbBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+
+        svLTB.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                getFilter(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                getFilter(s);
+                return false;
+            }
+        });
+    }
+
+    private void getFilter(String s){
+        filter = new ArrayList<>();
+        for (LoaiThietBiEntity e: DSLTB) {
+            if(e.getTenLoaiTB().toLowerCase().contains(s.toLowerCase())){
+                filter.add(e);
+            }
+        }
+        adapterLoaiThietBi.setFilterList(filter);
+        if(filter.isEmpty()){
+            //Toast.makeText(this, "Không có dữ liệu để hiển thị", Toast.LENGTH_SHORT).show();
+            new AlertDialog.Builder(this)
+                    .setTitle("Thông báo")
+                    .setMessage("Không có dữ liệu để hiển thị!")
+                    .setCancelable(true)
+                    .show();
+        }
     }
 
     public void loadListView(){
