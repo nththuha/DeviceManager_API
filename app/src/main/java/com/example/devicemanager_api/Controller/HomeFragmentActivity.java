@@ -25,7 +25,7 @@ import com.example.devicemanager_api.R;
 
 public class HomeFragmentActivity extends Fragment {
 
-    TaiKhoanEntity nhanVienLogin;
+    TaiKhoanEntity taiKhoanEntity;
     TextView tvName;
     ImageButton imvLogout;
     Button btnY, btnN;
@@ -48,14 +48,21 @@ public class HomeFragmentActivity extends Fragment {
 
         //nhận data từ login
         Bundle bundle = getActivity().getIntent().getExtras();
-        nhanVienLogin = (TaiKhoanEntity) bundle.getSerializable("thong_tin_nv");
-
+        taiKhoanEntity = (TaiKhoanEntity) bundle.getSerializable("thong_tin_nv");
+        role(taiKhoanEntity);
         getEvent();
         return view;
     }
 
+    private void role(TaiKhoanEntity taiKhoanEntity) {
+        if(taiKhoanEntity.getLoai().equals("Nhân viên")){
+            llNhanVien.setVisibility(View.GONE);
+            llThongKe.setVisibility(View.GONE);
+        }
+    }
+
     private void getEvent() {
-        tvName.setText("Xin chào, " + nhanVienLogin.getHo() + " " + nhanVienLogin.getTen());
+        tvName.setText("Xin chào, " + taiKhoanEntity.getHo() + " " + taiKhoanEntity.getTen());
         llPhongHoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
