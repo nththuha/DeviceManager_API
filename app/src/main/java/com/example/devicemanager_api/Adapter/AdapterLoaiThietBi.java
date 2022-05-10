@@ -153,7 +153,7 @@ public class AdapterLoaiThietBi extends ArrayAdapter<LoaiThietBiEntity> {
             @Override
             public void onResponse(Call<LoaiThietBiEntity> call, Response<LoaiThietBiEntity> response) {
                 if (response.isSuccessful()) {
-                    thongBaoThanhCong(Gravity.CENTER, "Cập nhập thông tin thành công");
+                    thongBaoThanhCong(Gravity.CENTER, "Cập nhập loại thiết bị thành công!");
                     ((LoaiThietBiActivity) context).layDSLoaiThietBi();
                     return;
                 }
@@ -217,7 +217,7 @@ public class AdapterLoaiThietBi extends ArrayAdapter<LoaiThietBiEntity> {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    thongBaoThanhCong(Gravity.CENTER, "Xóa thành công loại thiết bị!");
+                    thongBaoThanhCong(Gravity.CENTER, "Xóa loại thiết bị thành công!");
                     ((LoaiThietBiActivity) context).layDSLoaiThietBi();
                     return;
                 }
