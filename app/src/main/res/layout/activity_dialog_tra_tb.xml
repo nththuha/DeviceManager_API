@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/round_border_while30"
+    android:layout_margin="28dp"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tvTitleMuonTB"
+        android:text="Trả thiết bị theo phòng"
+        style="@style/textview_title_tb"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/maPhong"
+                style="@style/style_text_string" />
+
+            <TextView
+                android:id="@+id/tvMaPhongT"
+                android:layout_marginStart="34dp"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                style="@style/textview_spinner" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:text="@string/maTB"
+                style="@style/style_text_string" />
+            <TextView
+                android:id="@+id/tvMaThietBiT"
+                android:layout_marginStart="29dp"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                style="@style/textview_spinner"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:text="@string/ngayMuon"
+                style="@style/style_text_string" />
+
+            <TextView
+                android:id="@+id/tvNgayMuon"
+                android:layout_marginStart="24dp"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                style="@style/textview_spinner"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llSoLuongT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:text="@string/sl"
+                style="@style/style_text_string" />
+
+            <EditText
+                android:id="@+id/txtSoLuongT"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                style="@style/style_text_slmuon"/>
+            <TextView
+                android:id="@+id/tvSoLuongM"
+                style="@style/style_text_sldu"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="5dp">
+            <Button
+                android:id="@+id/btnHuyT"
+                android:text="Hủy"
+                style="@style/style_themltb_btn" />
+            <Button
+                android:id="@+id/btnTra"
+                android:text="Trả"
+                style="@style/style_themltb_btn" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

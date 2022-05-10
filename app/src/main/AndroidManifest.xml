@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.devicemanager_api">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,10 +14,13 @@
         android:theme="@style/Theme.DeviceManager_API">
         <activity
             android:name=".Controller.TaiKhoanFragmentActivity"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".Controller.ChiTietSDActivity"/>
         <activity
             android:name=".Controller.HomeFragmentActivity"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".Controller.HomeActivity"
             android:exported="false" />

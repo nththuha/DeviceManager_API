@@ -5,17 +5,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ChiTietSuDungEntity implements Serializable {
+public class ChiTietSDEntity implements Serializable {
     private int idCTSD;
     private Date ngaySD;
     private int soLuongSD;
     private String maTB;
     private String maPhong;
 
-    public ChiTietSuDungEntity() {
+    public ChiTietSDEntity() {
     }
 
-    public ChiTietSuDungEntity(int idCTSD, Date ngaySD, int soLuongSD, String maTB, String maPhong) {
+    public ChiTietSDEntity(int idCTSD, Date ngaySD, int soLuongSD, String maTB, String maPhong) {
         this.idCTSD = idCTSD;
         this.ngaySD = ngaySD;
         this.soLuongSD = soLuongSD;

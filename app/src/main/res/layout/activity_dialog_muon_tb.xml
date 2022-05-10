@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/round_border_while30"
+    android:layout_margin="28dp"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tvTitleMuonTB"
+        android:text="Mượn thiết bị theo phòng"
+        style="@style/textview_title_tb" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/maPhong"
+                style="@style/style_text_string"/>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spMaPhongM"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="24dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:background="@android:color/transparent"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:text="@string/maTB"
+                style="@style/style_text_string"/>
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spMaThietBiM"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:background="@android:color/transparent"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:text="@string/ngayMuon"
+                style="@style/style_text_string" />
+
+            <TextView
+                android:id="@+id/tvNgayM"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical|center"
+                android:layout_marginStart="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:inputType="date"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llSoLuongM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:text="@string/sl"
+                style="@style/style_text_string" />
+
+            <EditText
+                android:id="@+id/txtSoLuongM"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                style="@style/style_text_slmuon"/>
+            <TextView
+                android:id="@+id/tvSoLuongDu"
+                style="@style/style_text_sldu"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="5dp">
+            <Button
+                android:id="@+id/btnHuyM"
+                android:text="Hủy"
+                style="@style/style_themltb_btn" />
+            <Button
+                android:id="@+id/btnMuon"
+                android:text="Mượn"
+                style="@style/style_themltb_btn" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

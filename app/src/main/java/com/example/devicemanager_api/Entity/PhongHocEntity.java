@@ -8,12 +8,12 @@ public class PhongHocEntity implements Serializable {
     private String maPhong;
     private String loaiPhong;
     private int tang;
-    private List<ChiTietSuDungEntity> chiTietSDs = new ArrayList<>();
+    private List<ChiTietSDEntity> chiTietSDs = new ArrayList<>();
 
     public PhongHocEntity() {
     }
 
-    public PhongHocEntity(String maPhong, String loaiPhong, int tang, List<ChiTietSuDungEntity> chiTietSDs) {
+    public PhongHocEntity(String maPhong, String loaiPhong, int tang, List<ChiTietSDEntity> chiTietSDs) {
         this.maPhong = maPhong;
         this.loaiPhong = loaiPhong;
         this.tang = tang;
@@ -50,11 +50,11 @@ public class PhongHocEntity implements Serializable {
         this.tang = tang;
     }
 
-    public List<ChiTietSuDungEntity> getChiTietSDs() {
+    public List<ChiTietSDEntity> getChiTietSDs() {
         return chiTietSDs;
     }
 
-    public void setChiTietSDs(List<ChiTietSuDungEntity> chiTietSDs) {
+    public void setChiTietSDs(List<ChiTietSDEntity> chiTietSDs) {
         this.chiTietSDs = chiTietSDs;
     }
 }

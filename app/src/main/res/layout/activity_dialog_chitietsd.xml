@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="28dp"
+    android:padding="10dp"
+    android:background="@drawable/round_border_while30"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTieuDe"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="CHI TIẾT MƯỢN THIẾT BỊ"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp"
+        android:padding="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/maPM"
+                style="@style/style_themltb_tieude" />
+            <TextView
+                android:id="@+id/tvMaPCTmuon"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/loaiPH"
+                style="@style/style_themltb_tieude" />
+            <TextView
+                android:id="@+id/tvLoaiPCTmuon"
+                android:textStyle="bold"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/maTB"
+                style="@style/style_themltb_tieude" />
+            <TextView
+                android:id="@+id/tvMaTBCTmuon"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/tenTB"
+                style="@style/style_themltb_tieude" />
+            <TextView
+                android:id="@+id/tvTenTBCTmuon"
+                android:textStyle="bold"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/slmuon"
+                style="@style/style_themltb_tieude" />
+            <TextView
+                android:id="@+id/tvSoLuongCTmuon"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/soldu"
+                style="@style/style_themltb_tieude" />
+            <TextView
+                android:id="@+id/tvSoLuongCTconlai"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/ngayMuon"
+                style="@style/style_themltb_tieude" />
+            <TextView
+                android:id="@+id/tvNgayCTmuon"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
