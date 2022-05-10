@@ -224,7 +224,7 @@ public class AdapterPhongHoc extends ArrayAdapter<PhongHocEntity> {
         PhongHocAPI.apiPhonghocService.xoaPhongHoc(maPhong).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                thongBaoThanhCong(Gravity.CENTER,"Xóa thành công phòng học!");
+                thongBaoThanhCong(Gravity.CENTER,"Xóa phòng học thành công!");
                 ((PhongHocActivity) context).layDSPhongHoc();
                 return;
             }
