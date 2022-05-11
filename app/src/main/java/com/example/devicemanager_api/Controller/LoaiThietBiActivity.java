@@ -92,12 +92,12 @@ public class LoaiThietBiActivity extends AppCompatActivity {
         }
         adapterLoaiThietBi.setFilterList(filter);
         if(filter.isEmpty()){
-            //Toast.makeText(this, "Không có dữ liệu để hiển thị", Toast.LENGTH_SHORT).show();
-            new AlertDialog.Builder(this)
+            Toast.makeText(this, "Không có dữ liệu để hiển thị", Toast.LENGTH_SHORT).show();
+            /*new AlertDialog.Builder(this)
                     .setTitle("Thông báo")
                     .setMessage("Không có dữ liệu để hiển thị!")
                     .setCancelable(true)
-                    .show();
+                    .show();*/
         }
     }
 

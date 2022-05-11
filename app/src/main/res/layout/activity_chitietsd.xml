@@ -18,7 +18,7 @@
         android:background="?android:selectableItemBackground">
 
         <ImageButton
-            android:id="@+id/imbBack"
+            android:id="@+id/imbBackCTSD"
             style="@style/style_img_btnback"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         <!--android:background="@color/blue_100"-->
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp">
         <ListView
-            android:id="@+id/lvCTSuDung"
+            android:id="@+id/lvChiTietSD"
             android:layout_width="match_parent"
             android:layout_height="460dp" />
     </LinearLayout>

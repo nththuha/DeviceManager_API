@@ -3,6 +3,7 @@ package com.example.devicemanager_api.Controller;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -49,6 +50,12 @@ public class ThietBiActivity extends AppCompatActivity {
 
     private void setEvent() {
         layDSThietBi();
+        imbBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void layDSThietBi() {
