@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class LoaiThietBiActivity extends AppCompatActivity {
 
     ListView lvLTB;
     ImageButton imbThemLTB, imbBack;
+    ProgressBar pbLoad;
     SearchView svLTB;
     Button btnLuu, btnThoat;
     EditText txtTenLTB, txtMaLTB;
@@ -112,6 +114,7 @@ public class LoaiThietBiActivity extends AppCompatActivity {
             public void onResponse(Call<List<LoaiThietBiEntity>> call, Response<List<LoaiThietBiEntity>> response) {
                 DSLTB = (ArrayList<LoaiThietBiEntity>) response.body();
                 loadListView();
+                pbLoad.setVisibility(View.GONE);
             }
 
             @Override
@@ -222,6 +225,7 @@ public class LoaiThietBiActivity extends AppCompatActivity {
 
     private void setControl() {
         lvLTB = findViewById(R.id.lvLTB);
+        pbLoad = findViewById(R.id.pbLoad);
         imbThemLTB = findViewById(R.id.imbThemLTB);
         svLTB = findViewById(R.id.svLTB);
         imbBack = findViewById(R.id.imbBack);

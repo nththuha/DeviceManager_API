@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ import retrofit2.Response;
 
 public class ChiTietSDActivity extends AppCompatActivity {
     ListView lvChiTietSD;
+    ProgressBar pbLoad;
     SearchView svCTSD;
     ImageButton imbBack;
     Button btnMuon, btnTra, btnHuyM, btnHuyT;
@@ -81,6 +83,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
 
     private void setContro() {
         lvChiTietSD = findViewById(R.id.lvChiTietSD);
+        pbLoad = findViewById(R.id.pbLoad);
         svCTSD = findViewById(R.id.svCTSD);
         imbBack = findViewById(R.id.imbBackCTSD);
         btnMuon = findViewById(R.id.btnMuon);
@@ -96,6 +99,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
                 chiTietSDs = (ArrayList<ChiTietSDEntity>) response.body();
                 Toast.makeText(ChiTietSDActivity.this, "Load chi tiết thành công!", Toast.LENGTH_SHORT).show();
                 loadListView();
+                pbLoad.setVisibility(View.GONE);
             }
 
             @Override

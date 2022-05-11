@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ public class ThietBiActivity extends AppCompatActivity {
 //    AdapterTenLoaiThietBi adapterTenLoaiThietBi;
     ArrayList<ThietBiEntity> filter;
     ListView lvTb;
+    ProgressBar pbLoad;
     Spinner snTB, spTenloaiTB;
     EditText txtMaTB, txtTenTB, txtXuatxu, txtSoluong;
     Button btnThoatTB, btnLuuTB;
@@ -64,6 +66,7 @@ public class ThietBiActivity extends AppCompatActivity {
             public void onResponse(Call<List<ThietBiEntity>> call, Response<List<ThietBiEntity>> response) {
                 thietBis = (ArrayList<ThietBiEntity>) response.body();
                 loadListView();
+                pbLoad.setVisibility(View.GONE);
             }
 
             @Override
@@ -82,6 +85,7 @@ public class ThietBiActivity extends AppCompatActivity {
 //        ThietBi tb = new ThietBi("TB1","Loa","Anh","5","DC");
 //        dbThietBi.themThietBi(tb);
         lvTb = findViewById(R.id.lvTB);
+        pbLoad = findViewById(R.id.pbLoad);
         snTB = findViewById(R.id.snTB);
         imbBack = findViewById(R.id.imbBackTB);
         svTB = findViewById(R.id.svTB);

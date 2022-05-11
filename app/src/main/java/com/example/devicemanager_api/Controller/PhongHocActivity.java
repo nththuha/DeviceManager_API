@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public class PhongHocActivity extends AppCompatActivity {
 
     ListView lvPH;
     ImageButton imbBack, imbThemPH, imbSua, imbXoa;
+    ProgressBar pbLoad;
     SearchView svPH;
     Button btnLuu, btnThoat;
     EditText txtMaPhong, txtLoaiPhong, txtTang;
@@ -108,6 +110,7 @@ public class PhongHocActivity extends AppCompatActivity {
             public void onResponse(Call<List<PhongHocEntity>> call, Response<List<PhongHocEntity>> response) {
                 DSPH = (ArrayList<PhongHocEntity>) response.body();
                 loadListView();
+                pbLoad.setVisibility(View.GONE);
             }
 
             @Override
@@ -228,6 +231,7 @@ public class PhongHocActivity extends AppCompatActivity {
 
     private void setControl() {
         lvPH = findViewById(R.id.lvPH);
+        pbLoad = findViewById(R.id.pbLoad);
         imbBack = findViewById(R.id.imbBack);
         imbThemPH = findViewById(R.id.imbThemPH);
         imbSua = findViewById(R.id.imbSua);
