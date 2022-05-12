@@ -22,6 +22,7 @@ public class AdapterChiTietSD extends ArrayAdapter<ChiTietSDEntity> {
     ArrayList<ChiTietSDEntity> data;
 
     TextView tvMaPhongSD, tvMaTBSD, tvSoLuongSD;
+
     public AdapterChiTietSD(@NonNull Context context, int resource, @NonNull ArrayList<ChiTietSDEntity> data) {
         super(context, resource, data);
         this.context = context;
@@ -29,7 +30,7 @@ public class AdapterChiTietSD extends ArrayAdapter<ChiTietSDEntity> {
         this.data = data;
     }
 
-    public void setFilterList(ArrayList<ChiTietSDEntity> filter){
+    public void setFilterList(ArrayList<ChiTietSDEntity> filter) {
         this.data = filter;
         notifyDataSetChanged();
     }
@@ -42,18 +43,17 @@ public class AdapterChiTietSD extends ArrayAdapter<ChiTietSDEntity> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        convertView = LayoutInflater.from(context).inflate(resource,null);
+        convertView = LayoutInflater.from(context).inflate(resource, null);
         tvMaPhongSD = convertView.findViewById(R.id.tvMaPhongSD);
         tvMaTBSD = convertView.findViewById(R.id.tvMaTBSD);
         tvSoLuongSD = convertView.findViewById(R.id.tvSoLuongSD);
 
         ChiTietSDEntity chiTietSDEntity = data.get(position);
-        ArrayList<ThietBiEntity> thietBis = new ArrayList<>();
-        if(chiTietSDEntity != null){
-            tvMaPhongSD.setText(chiTietSDEntity.getMaPhong());
-            tvMaTBSD.setText(chiTietSDEntity.getMaTB());
-            tvSoLuongSD.setText(chiTietSDEntity.getSoLuongSD()+"");
-        }
+        ThietBiEntity thietBi = new ThietBiEntity();
+        tvMaPhongSD.setText(chiTietSDEntity.getMaPhong());
+        tvMaTBSD.setText(chiTietSDEntity.getMaTB());
+        tvSoLuongSD.setText(chiTietSDEntity.getSoLuongSD() + "");
+
 
         return convertView;
     }
