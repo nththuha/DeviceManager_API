@@ -10,11 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.devicemanager_api.API.ThietBiAPI;
 import com.example.devicemanager_api.Entity.ChiTietSDEntity;
 import com.example.devicemanager_api.Entity.ThietBiEntity;
 import com.example.devicemanager_api.R;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AdapterChiTietSD extends ArrayAdapter<ChiTietSDEntity> {
     Context context;
@@ -49,12 +54,9 @@ public class AdapterChiTietSD extends ArrayAdapter<ChiTietSDEntity> {
         tvSoLuongSD = convertView.findViewById(R.id.tvSoLuongSD);
 
         ChiTietSDEntity chiTietSDEntity = data.get(position);
-        ThietBiEntity thietBi = new ThietBiEntity();
         tvMaPhongSD.setText(chiTietSDEntity.getMaPhong());
         tvMaTBSD.setText(chiTietSDEntity.getMaTB());
         tvSoLuongSD.setText(chiTietSDEntity.getSoLuongSD() + "");
-
-
         return convertView;
     }
 }

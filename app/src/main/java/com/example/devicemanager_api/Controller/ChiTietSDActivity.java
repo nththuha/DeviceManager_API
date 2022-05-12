@@ -79,6 +79,15 @@ public class ChiTietSDActivity extends AppCompatActivity {
                 filter.add(e);
             }
         }
+        adapterChiTietSD.setFilterList(filter);
+        if (filter.isEmpty()) {
+            Toast.makeText(this, "Không có dữ liệu để hiển thị", Toast.LENGTH_SHORT).show();
+            /*new AlertDialog.Builder(this)
+                    .setTitle("Thông báo")
+                    .setMessage("Không có dữ liệu để hiển thị!")
+                    .setCancelable(true)
+                    .show();*/
+        }
     }
 
     private void setContro() {
@@ -101,7 +110,6 @@ public class ChiTietSDActivity extends AppCompatActivity {
                 loadListView();
                 pbLoad.setVisibility(View.GONE);
             }
-
             @Override
             public void onFailure(Call<List<ChiTietSDEntity>> call, Throwable t) {
                 Toast.makeText(ChiTietSDActivity.this, "Load chi tiết thất bại!", Toast.LENGTH_SHORT).show();
