@@ -13,13 +13,13 @@ import androidx.annotation.Nullable;
 import com.example.devicemanager_api.Entity.PhongHocEntity;
 import com.example.devicemanager_api.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class AdapterMaPhong extends ArrayAdapter<PhongHocEntity> {
     Context context;
     int resource;
-    ArrayList<PhongHocEntity> data;
-    public AdapterMaPhong(@NonNull Context context, int resource, @NonNull ArrayList<PhongHocEntity> data) {
+    List<PhongHocEntity> data;
+    public AdapterMaPhong(@NonNull Context context, int resource, @NonNull List<PhongHocEntity> data) {
         super(context, resource, data);
         this.context = context;
         this.resource = resource;

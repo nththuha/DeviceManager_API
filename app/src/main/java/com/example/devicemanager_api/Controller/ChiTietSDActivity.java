@@ -89,6 +89,78 @@ public class ChiTietSDActivity extends AppCompatActivity {
         adapterChiTietSD = new AdapterChiTietSD(this,R.layout.activity_item_chitietsd, chiTietSDs);
         lvChiTietSD.setAdapter(adapterChiTietSD);
     }
+    public void loadSpinner(){
+        PhongHocAPI.apiPhonghocService.layDSPhongHoc().enqueue(new Callback<List<PhongHocEntity>>() {
+            @Override
+            public void onResponse(Call<List<PhongHocEntity>> call, Response<List<PhongHocEntity>> response) {
+                List phongHoc = response.body();
+                ThietBiAPI.apiThietBiService.layDSThietBi().enqueue(new Callback<List<ThietBiEntity>>() {
+                    @Override
+                    public void onResponse(Call<List<ThietBiEntity>> call, Response<List<ThietBiEntity>> response) {
+                        List thietBi = response.body();
+                        dialogMuonTB(Gravity.CENTER,thietBi,phongHoc);
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<ThietBiEntity>> call, Throwable t) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call<List<PhongHocEntity>> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void getFilter(String s) {
+        filter = new ArrayList<>();
+        for(ChiTietSDEntity e : chiTietSDs){
+            if(e.getMaTB().toLowerCase().contains(s.toLowerCase()) || e.getMaPhong().toLowerCase().contains(s.toLowerCase())){
+                filter.add(e);
+            }
+        }
+        adapterChiTietSD.setFilterList(filter);
+        if (filter.isEmpty()) {
+            Toast.makeText(this, "Không có dữ liệu để hiển thị", Toast.LENGTH_SHORT).show();
+            /*new AlertDialog.Builder(this)
+                    .setTitle("Thông báo")
+                    .setMessage("Không có dữ liệu để hiển thị!")
+                    .setCancelable(true)
+                    .show();*/
+        }
+    }
+
+    private void setContro() {
+        lvChiTietSD = findViewById(R.id.lvChiTietSD);
+        pbLoad = findViewById(R.id.pbLoad);
+        svCTSD = findViewById(R.id.svCTSD);
+        imbBack = findViewById(R.id.imbBackCTSD);
+        btnMuonCTTB = findViewById(R.id.btnMuonCTTB);
+        btnMuon = findViewById(R.id.btnMuon);
+        btnTra = findViewById(R.id.btnTra);
+        btnHuyM = findViewById(R.id.btnHuyM);
+        btnHuyT = findViewById(R.id.btnHuyT);
+    }
+
+    private void setCallAPI() {
+        ChiTietSDAPI.apiChiTietSDService.layDSChiTietSD().enqueue(new Callback<List<ChiTietSDEntity>>() {
+            @Override
+            public void onResponse(Call<List<ChiTietSDEntity>> call, Response<List<ChiTietSDEntity>> response) {
+                chiTietSDs = (ArrayList<ChiTietSDEntity>) response.body();
+                Toast.makeText(ChiTietSDActivity.this, "Load chi tiết thành công!", Toast.LENGTH_SHORT).show();
+                loadListView();
+                pbLoad.setVisibility(View.GONE);
+            }
+            @Override
+            public void onFailure(Call<List<ChiTietSDEntity>> call, Throwable t) {
+                Toast.makeText(ChiTietSDActivity.this, "Load chi tiết thất bại!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     public void getThietBi(String maTB){
         try {
@@ -99,7 +171,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         thietBi = response.body();
                         tvTenTBCTmuon.setText(thietBi.getTenTB());
-                        loadListView();
+                        //loadListView();
                         ChiTietSDAPI.apiChiTietSDService.laySoLuongTheoMaTB(thietBi.getMaTB()).enqueue(new Callback<List<ChiTietSDEntity>>() {
                             @Override
                             public void onResponse(Call<List<ChiTietSDEntity>> call, Response<List<ChiTietSDEntity>> response) {
@@ -133,6 +205,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
         }
 
     }
+
     public void getPhongHoc(String maPhong){
         try {
             PhongHocAPI.apiPhonghocService.layPhongHoc(maPhong).enqueue(new Callback<PhongHocEntity>() {
@@ -142,7 +215,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         phongHoc = response.body();
                         tvLoaiPCTmuon.setText(phongHoc.getLoaiPhong());
-                        loadListView();
+                       // loadListView();
                     }
                 }
 
@@ -187,13 +260,12 @@ public class ChiTietSDActivity extends AppCompatActivity {
         btnMuonCTTB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialogMuonTB(Gravity.CENTER);
+                loadSpinner();
             }
         });
     }
 
-    private void dialogMuonTB(int gravity) {
-        chiTietSDs = new ArrayList<>();
+    private void dialogMuonTB(int gravity, List thietBi, List phongHoc) {
         //xử lý vị trí của dialog
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -230,57 +302,29 @@ public class ChiTietSDActivity extends AppCompatActivity {
         date = new Date(millis);
         tvNgay.setText(date.toString());
         //----------------------------spinner------------------------------
-        PhongHocAPI.apiPhonghocService.layDSPhongHoc().enqueue(new Callback<List<PhongHocEntity>>() {
+        adapterMaPhong = new AdapterMaPhong(context,R.layout.spinner_maphong_ctsd,phongHoc);
+        spMaPhong.setAdapter(adapterMaPhong);
+        spMaPhong.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onResponse(Call<List<PhongHocEntity>> call, Response<List<PhongHocEntity>> response) {
-                phongHocs = new ArrayList<>();
-                if(response.isSuccessful()){
-                    phongHocs = (ArrayList<PhongHocEntity>) response.body();
-                    adapterMaPhong = new AdapterMaPhong(context,R.layout.spinner_maphong_ctsd,phongHocs);
-                    spMaPhong.setAdapter(adapterMaPhong);
-                    spMaPhong.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                            maPhong = adapterMaPhong.getItem(i).getMaPhong();
-                        }
-                        @Override
-                        public void onNothingSelected(AdapterView<?> adapterView) {
-                        }
-                    });
-                }
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                maPhong = adapterMaPhong.getItem(i).getMaPhong();
             }
-
             @Override
-            public void onFailure(Call<List<PhongHocEntity>> call, Throwable t) {
-
+            public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-        ThietBiAPI.apiThietBiService.layDSThietBi().enqueue(new Callback<List<ThietBiEntity>>() {
+        adapterMaTB = new AdapterMaTB(getApplication(),R.layout.spinner_matb_ctsd,thietBi);
+        spMaThietBi.setAdapter(adapterMaTB);
+        spMaThietBi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onResponse(Call<List<ThietBiEntity>> call, Response<List<ThietBiEntity>> response) {
-                thietBis = new ArrayList<>();
-                if(response.isSuccessful()){
-                    thietBis = (ArrayList<ThietBiEntity>) response.body();
-                    adapterMaTB = new AdapterMaTB(getApplication(),R.layout.spinner_matb_ctsd,thietBis);
-                    spMaThietBi.setAdapter(adapterMaTB);
-                    spMaThietBi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                            maTB = adapterMaTB.getItem(i).getMaTB();
-                            tongsl = thietBis.get(i).getSoLuong();
-                            sldu = tongsl - slmuon;
-                            tvSoLuongDu.setText("/"+sldu);
-                        }
-                        @Override
-                        public void onNothingSelected(AdapterView<?> adapterView) {
-
-                        }
-                    });
-                }
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                maTB = adapterMaTB.getItem(i).getMaTB();
+                tongsl = thietBis.get(i).getSoLuong();
+                sldu = tongsl - slmuon;
+                tvSoLuongDu.setText("/"+sldu);
             }
-
             @Override
-            public void onFailure(Call<List<ThietBiEntity>> call, Throwable t) {
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
@@ -343,6 +387,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
         tvThongBao.setText(text);
         dialog.show();
     }
+
     private void themCTSBvaoDB(ChiTietSDEntity chiTietSD){
         ChiTietSDAPI.apiChiTietSDService.themChiTietSD(chiTietSD).enqueue(new Callback<ChiTietSDEntity>() {
             @Override
@@ -401,49 +446,4 @@ public class ChiTietSDActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void getFilter(String s) {
-        filter = new ArrayList<>();
-        for(ChiTietSDEntity e : chiTietSDs){
-            if(e.getMaTB().toLowerCase().contains(s.toLowerCase()) || e.getMaPhong().toLowerCase().contains(s.toLowerCase())){
-                filter.add(e);
-            }
-        }
-        adapterChiTietSD.setFilterList(filter);
-        if (filter.isEmpty()) {
-            Toast.makeText(this, "Không có dữ liệu để hiển thị", Toast.LENGTH_SHORT).show();
-            /*new AlertDialog.Builder(this)
-                    .setTitle("Thông báo")
-                    .setMessage("Không có dữ liệu để hiển thị!")
-                    .setCancelable(true)
-                    .show();*/
-        }
-    }
-
-    private void setContro() {
-        lvChiTietSD = findViewById(R.id.lvChiTietSD);
-        pbLoad = findViewById(R.id.pbLoad);
-        svCTSD = findViewById(R.id.svCTSD);
-        imbBack = findViewById(R.id.imbBackCTSD);
-        btnMuonCTTB = findViewById(R.id.btnMuonCTTB);
-        btnMuon = findViewById(R.id.btnMuon);
-        btnTra = findViewById(R.id.btnTra);
-        btnHuyM = findViewById(R.id.btnHuyM);
-        btnHuyT = findViewById(R.id.btnHuyT);
-    }
-
-    private void setCallAPI() {
-        ChiTietSDAPI.apiChiTietSDService.layDSChiTietSD().enqueue(new Callback<List<ChiTietSDEntity>>() {
-            @Override
-            public void onResponse(Call<List<ChiTietSDEntity>> call, Response<List<ChiTietSDEntity>> response) {
-                chiTietSDs = (ArrayList<ChiTietSDEntity>) response.body();
-                Toast.makeText(ChiTietSDActivity.this, "Load chi tiết thành công!", Toast.LENGTH_SHORT).show();
-                loadListView();
-                pbLoad.setVisibility(View.GONE);
-            }
-            @Override
-            public void onFailure(Call<List<ChiTietSDEntity>> call, Throwable t) {
-                Toast.makeText(ChiTietSDActivity.this, "Load chi tiết thất bại!", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 }

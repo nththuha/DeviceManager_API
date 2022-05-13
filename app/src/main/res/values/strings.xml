@@ -14,7 +14,9 @@
     <string name="nhanVien">Nhân viên</string>
     <string name="maNV">Mã nhân viên</string>
     <string name="tenNV">Tên nhân viên</string>
+    <string name="matKhau">Mật khẩu</string>
     <string name="email">Email</string>
+    <string name="chucVu">Chức Vụ</string>
 
     <string name="thongKe">Thống kê</string>
 
