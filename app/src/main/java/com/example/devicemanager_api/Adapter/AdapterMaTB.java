@@ -14,12 +14,13 @@ import com.example.devicemanager_api.Entity.ThietBiEntity;
 import com.example.devicemanager_api.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdapterMaTB extends ArrayAdapter<ThietBiEntity> {
     Context context;
     int resource;
-    ArrayList<ThietBiEntity> data;
-    public AdapterMaTB(@NonNull Context context, int resource, @NonNull ArrayList<ThietBiEntity> data) {
+    List<ThietBiEntity> data;
+    public AdapterMaTB(@NonNull Context context, int resource, @NonNull List<ThietBiEntity> data) {
         super(context, resource, data);
         this.context = context;
         this.data =  data;

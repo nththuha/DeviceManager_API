@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.devicemanager_api.API.TaiKhoanAPI;
 import com.example.devicemanager_api.Entity.TaiKhoanEntity;
@@ -48,7 +49,9 @@ public class TaiKhoanFragmentActivity extends Fragment {
     ImageView imvAvt;
     View view = null;
     HomeActivity mhomeActivity;
+    TaiKhoanEntity taiKhoan;
     Bitmap bitmap;
+    TextView tvTenNV, tvMaNVTK, tvMatKhauTK, tvEmailTV, tvChucVuTK;
     private ActivityResultLauncher<Intent> mActivityResultLauncher;
 
     @Override
@@ -56,12 +59,12 @@ public class TaiKhoanFragmentActivity extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_taikhoan_activity, container, false);
         mhomeActivity = (HomeActivity) getActivity();
+        Bundle bundle = getActivity().getIntent().getExtras();
+        taiKhoan = (TaiKhoanEntity) bundle.getSerializable("thong_tin_nv");
         setControl();
         setEvent();
         return view;
     }
-
-
 
     private void setEvent() {
         if(bitmap != null) {
@@ -96,6 +99,11 @@ public class TaiKhoanFragmentActivity extends Fragment {
                     }
                 }
         );
+        tvTenNV.setText(taiKhoan.getHo()+" "+taiKhoan.getTen());
+        tvMaNVTK.setText(taiKhoan.getMaTaiKhoan());
+        tvMatKhauTK.setText(taiKhoan.getMatKhau());
+        tvEmailTV.setText(taiKhoan.getEmail());
+        tvChucVuTK.setText(taiKhoan.getLoai());
     }
 
     private void onClickRequestPermission() {
@@ -131,6 +139,11 @@ public class TaiKhoanFragmentActivity extends Fragment {
 
     private void setControl() {
         imvAvt = view.findViewById(R.id.imvAvatar);
+        tvTenNV = view.findViewById(R.id.tvTenNV);
+        tvMaNVTK = view.findViewById(R.id.tvMaNVTK);
+        tvMatKhauTK = view.findViewById(R.id.tvMatKhauTK);
+        tvEmailTV = view.findViewById(R.id.tvEmailTK);
+        tvChucVuTK = view.findViewById(R.id.tvchucVuTK);
     }
 
 
