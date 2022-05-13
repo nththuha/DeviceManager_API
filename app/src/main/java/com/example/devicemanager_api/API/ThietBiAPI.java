@@ -29,7 +29,7 @@ public interface ThietBiAPI {
     Call<List<ThietBiEntity>> layDSThietBi();
 
     @GET("thietbi/tb")
-    Call<ThietBiEntity> layDSTBThietBi(@Query("maTB") String maTB);
+    Call<ThietBiEntity> layThietBi(@Query("maTB") String maTB);
 
     @POST("thietbi")
     Call<ThietBiEntity> themThietBi(@Body ThietBiEntity thietBiEntity);

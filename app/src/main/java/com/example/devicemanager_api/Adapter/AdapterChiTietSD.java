@@ -1,6 +1,7 @@
 package com.example.devicemanager_api.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +25,9 @@ import retrofit2.Response;
 public class AdapterChiTietSD extends ArrayAdapter<ChiTietSDEntity> {
     Context context;
     int resource;
+    int sumSL = 0;
     ArrayList<ChiTietSDEntity> data;
-
+    ThietBiEntity thietBi;
     TextView tvMaPhongSD, tvMaTBSD, tvSoLuongSD;
 
     public AdapterChiTietSD(@NonNull Context context, int resource, @NonNull ArrayList<ChiTietSDEntity> data) {
@@ -53,10 +55,27 @@ public class AdapterChiTietSD extends ArrayAdapter<ChiTietSDEntity> {
         tvMaTBSD = convertView.findViewById(R.id.tvMaTBSD);
         tvSoLuongSD = convertView.findViewById(R.id.tvSoLuongSD);
 
-        ChiTietSDEntity chiTietSDEntity = data.get(position);
-        tvMaPhongSD.setText(chiTietSDEntity.getMaPhong());
-        tvMaTBSD.setText(chiTietSDEntity.getMaTB());
-        tvSoLuongSD.setText(chiTietSDEntity.getSoLuongSD() + "");
+        ChiTietSDEntity chiTietSD = data.get(position);
+        /*ThietBiAPI.apiThietBiService.layThietBi(chiTietSD.getMaTB()).enqueue(new Callback<ThietBiEntity>() {
+            @Override
+            public void onResponse(Call<ThietBiEntity> call, Response<ThietBiEntity> response) {
+                thietBi = new ThietBiEntity();
+                if(response.isSuccessful()){
+                    thietBi = response.body();
+                    sumSL = thietBi.getSoLuong();
+                    Log.d("SumSL", "Sum = "+sumSL);
+                    tvSoLuongSD.setText(chiTietSD.getSoLuongSD() + "/"+sumSL);
+                }
+            }
+            @Override
+            public void onFailure(Call<ThietBiEntity> call, Throwable t) {
+
+            }
+        });*/
+        tvMaPhongSD.setText(chiTietSD.getMaPhong());
+        tvMaTBSD.setText(chiTietSD.getMaTB());
+        tvSoLuongSD.setText(chiTietSD.getSoLuongSD() + "/"+sumSL);
         return convertView;
     }
+
 }

@@ -1,6 +1,7 @@
 package com.example.devicemanager_api.API;
 
 import com.example.devicemanager_api.Entity.PhongHocEntity;
+import com.example.devicemanager_api.Entity.ThietBiEntity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -15,6 +16,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface PhongHocAPI {
     BaseURL baseUrl = new BaseURL();
@@ -25,6 +27,9 @@ public interface PhongHocAPI {
 
     @GET("phonghoc")
     Call<List<PhongHocEntity>> layDSPhongHoc();
+
+    @GET("phonghoc/ph")
+    Call<PhongHocEntity> layPhongHoc(@Query("maPhong") String maPhong);
 
     @POST("phonghoc")
     Call<PhongHocEntity> themPhongHoc(@Body PhongHocEntity phongHocEntity);

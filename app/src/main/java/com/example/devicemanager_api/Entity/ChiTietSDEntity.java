@@ -15,8 +15,7 @@ public class ChiTietSDEntity implements Serializable {
     public ChiTietSDEntity() {
     }
 
-    public ChiTietSDEntity(int idCTSD, Date ngaySD, int soLuongSD, String maTB, String maPhong) {
-        this.idCTSD = idCTSD;
+    public ChiTietSDEntity(Date ngaySD, int soLuongSD, String maTB, String maPhong) {
         this.ngaySD = ngaySD;
         this.soLuongSD = soLuongSD;
         this.maTB = maTB;
