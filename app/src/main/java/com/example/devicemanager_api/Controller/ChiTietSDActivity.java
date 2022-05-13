@@ -375,8 +375,6 @@ public class ChiTietSDActivity extends AppCompatActivity {
                     tvSoLuongM.setText("/" + slmuon);
                     dialog.show();
                 }
-
-
             }
         });
         btnN.setOnClickListener(new View.OnClickListener() {
