@@ -15,14 +15,23 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.devicemanager_api.API.ThietBiAPI;
+import com.example.devicemanager_api.Controller.ChiTietThietBiActivity;
+import com.example.devicemanager_api.Controller.ThongTinThietBiActivity;
+import com.example.devicemanager_api.Controller.ThietBiActivity;
 import com.example.devicemanager_api.Entity.ThietBiEntity;
 import com.example.devicemanager_api.R;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AdapterThietBi extends ArrayAdapter<ThietBiEntity> {
     Context context;
@@ -65,89 +74,112 @@ public class AdapterThietBi extends ArrayAdapter<ThietBiEntity> {
         imvSuaTb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(getContext(), ChiTietThietBiActivity.class);
-//                intent.putExtra("thietbi",thietBi);
-//                context.startActivity(intent);
+                Intent intent = new Intent(getContext(), ThongTinThietBiActivity.class);
+                intent.putExtra("thietbi",thietBi);
+                context.startActivity(intent);
             }
         });
 
         imvXoaTB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                xoaThietBi(Gravity.CENTER, thietBi.getMaThietBi());
+                xoaThietBi(Gravity.CENTER, thietBi.getMaTB());
+            }
+        });
+
+        tvTentb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ChiTietThietBiActivity.class);
+                intent.putExtra("thietbi",thietBi);
+                context.startActivity(intent);
             }
         });
         return convertView;
     }
 
-//    private void xoaThietBi(int gravity, String maTB){
-//        dbThietBi = new DBThietBi(context);
-//
-//        final Dialog dialog = new Dialog(context);
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setContentView(R.layout.activity_dialog_xoa_thietbi);
-//
-//        Window window = dialog.getWindow();
-//        if (window == null)
-//            return;
-//        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-//        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//
-//        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-//        windowAttributes.gravity = gravity;
-//        window.setAttributes(windowAttributes);
-//
-//        //click ra bên ngoài để tắt dialog
-//        if (Gravity.CENTER == gravity) {
-//            dialog.setCancelable(false);
-//        } else {
-//            dialog.setCancelable(true);
-//        }
-//        btnXoa = dialog.findViewById(R.id.btnXoaTB);
-//        btnHuy = dialog.findViewById(R.id.btnHuyTB);
-//        tvConfirmXoaTB = dialog.findViewById(R.id.tvConfirmXoaTB);
-//        tvConfirmXoaTB.setText("Bạn có thật sự muốn xóa "+maTB+" không?");
-//        btnXoa.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                thongBaoThanhCong(Gravity.CENTER, "Xóa thành công thiết bị "+ maTB+"!");
-//                dbThietBi.xoaThietBi(maTB);
-//                dialog.dismiss();
-//                ((ThietBiActivity)context).loadListView(dbThietBi);
-//            }
-//        });
-//        btnHuy.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                dialog.dismiss();
-//            }
-//        });
-//        dialog.show();
-//    }
-//    private void thongBaoThanhCong(int gravity, String text) {
-//        //xử lý vị trí của dialog
-//        final Dialog dialog = new Dialog(context);
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setContentView(R.layout.activity_dialog_tbthanhcong);
-//
-//        Window window = dialog.getWindow();
-//        if (window == null)
-//            return;
-//        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-//        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//
-//        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-//        windowAttributes.gravity = gravity;
-//        window.setAttributes(windowAttributes);
-//
-//        //click ra bên ngoài để tắt dialog
-//        if (Gravity.CENTER == gravity) {
-//            dialog.setCancelable(true);
-//        } else {
-//            dialog.setCancelable(true);
-//        }
-//        TextView tvThongBao = dialog.findViewById(R.id.tvThongBao);
-//        tvThongBao.setText(text);
-//        dialog.show();
-//    }
+    private void xoaThietBi(int gravity, String maTB){
+
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.activity_dialog_xoa_thietbi);
+
+        Window window = dialog.getWindow();
+        if (window == null)
+            return;
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+
+        //click ra bên ngoài để tắt dialog
+        if (Gravity.CENTER == gravity) {
+            dialog.setCancelable(false);
+        } else {
+            dialog.setCancelable(true);
+        }
+        btnXoa = dialog.findViewById(R.id.btnXoaTB);
+        btnHuy = dialog.findViewById(R.id.btnHuyTB);
+        tvConfirmXoaTB = dialog.findViewById(R.id.tvConfirmXoaTB);
+        tvConfirmXoaTB.setText("Bạn có thật sự muốn xóa "+maTB+" không?");
+        btnXoa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                xoaThietBi_API(maTB);
+                dialog.dismiss();
+
+            }
+        });
+        btnHuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    private void xoaThietBi_API(String maTB){
+        ThietBiAPI.apiThietBiService.xoaThietBi(maTB).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                thongBaoThanhCong(Gravity.CENTER, "Xóa thành công thiết bị "+ maTB+"!");
+                ((ThietBiActivity)context).layDSThietBi();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(context, "Xóa thiết bị thất bại!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void thongBaoThanhCong(int gravity, String text) {
+        //xử lý vị trí của dialog
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.activity_dialog_tbthanhcong);
+
+        Window window = dialog.getWindow();
+        if (window == null)
+            return;
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+
+        //click ra bên ngoài để tắt dialog
+        if (Gravity.CENTER == gravity) {
+            dialog.setCancelable(true);
+        } else {
+            dialog.setCancelable(true);
+        }
+        TextView tvThongBao = dialog.findViewById(R.id.tvThongBao);
+        tvThongBao.setText(text);
+        dialog.show();
+    }
 }

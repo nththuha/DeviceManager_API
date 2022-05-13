@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_bg"
+    android:orientation="vertical"
+    tools:context=".Controller.ThietBiActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground">
+
+        <ImageButton
+            android:id="@+id/imbBackCTTB"
+            style="@style/style_img_btnback"
+            android:src="@drawable/ic_arrow_back"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            style="@style/style_tieude_QuanLy"
+            android:text="QUẢN LÝ THIẾT BỊ" />
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <TextView
+        android:id="@+id/tvCTTB"
+        style="@style/style_tieude_DanhSach"
+        android:layout_below="@+id/tb_label"
+        android:layout_centerInParent="true"
+        android:text="CHI TIẾT CÁC THIẾT BỊ" />
+
+    <Spinner
+        android:id="@+id/snTB"
+        android:layout_below="@id/tvCTTB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@android:color/transparent"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:id="@+id/llTenTB"
+        android:layout_below="@id/snTB"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:text="Mã Thiết Bị"
+            android:layout_marginTop="5dp"
+            android:layout_width="150dp"
+            android:layout_marginBottom="10dp"
+            style="@style/textview_dstb"/>
+        <TextView
+            android:text="Mã"
+            android:layout_marginTop="5dp"
+            android:layout_width="100dp"
+            style="@style/textview_dstb" />
+        <TextView
+            android:text="Trạng Thái"
+            android:layout_width="120dp"
+            android:layout_marginBottom="10dp"
+            style="@style/textview_dstb" />
+    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/pbLoad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <ListView
+        android:id="@+id/lvCTTB"
+        android:layout_width="wrap_content"
+        android:layout_height="380dp"
+        android:layout_below="@id/llTenTB" />
+
+
+</RelativeLayout>

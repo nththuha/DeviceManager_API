@@ -10,18 +10,18 @@ public class ThietBiEntity implements Serializable {
     private String xuatXu;
     private int soLuong;
     private String maLoaiTB;
-    private List<ChiTietSDEntity> chiTietSDs = new ArrayList<>();
+
 
     public ThietBiEntity() {
     }
 
-    public ThietBiEntity(String maTB, String tenTB, String xuatXu, int soLuong, String maLoaiTB, List<ChiTietSDEntity> chiTietSDs) {
+    public ThietBiEntity(String maTB, String tenTB, String xuatXu, int soLuong, String maLoaiTB) {
         this.maTB = maTB;
         this.tenTB = tenTB;
         this.xuatXu = xuatXu;
         this.soLuong = soLuong;
         this.maLoaiTB = maLoaiTB;
-        this.chiTietSDs = chiTietSDs;
+
     }
 
     public String getMaTB() {
@@ -64,11 +64,5 @@ public class ThietBiEntity implements Serializable {
         this.maLoaiTB = maLoaiTB;
     }
 
-    public List<ChiTietSDEntity> getChiTietSDs() {
-        return chiTietSDs;
-    }
 
-    public void setChiTietSDs(List<ChiTietSDEntity> chiTietSDs) {
-        this.chiTietSDs = chiTietSDs;
-    }
 }

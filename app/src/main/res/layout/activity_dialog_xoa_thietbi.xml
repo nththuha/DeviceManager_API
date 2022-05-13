@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="28dp"
+    android:background="@drawable/round_border_while30"
+    android:orientation="vertical">
+
+    <TextView
+        android:text="XÓA THIẾT BỊ"
+        style="@style/textview_title_tb"
+        android:textSize="16sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tvConfirmXoaTB"
+            android:text="Bạn có thật sự muốn xóa?"
+            style="@style/textview_title_tb"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp">
+
+        <Button
+            android:id="@+id/btnHuyTB"
+            style="@style/style_themltb_btn"
+            android:text="HỦY" />
+
+        <Button
+            android:id="@+id/btnXoaTB"
+            style="@style/style_themltb_btn"
+            android:text="XÁC NHẬN" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="380dp"
+    android:layout_margin="28dp"
+    android:background="@drawable/round_border_while30"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTieuDeTB"
+        android:text="THÊM THIẾT BỊ"
+        style="@style/textview_title_tb" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/maTB"
+                style="@style/style_themltb_tieude" />
+            <EditText
+                android:id="@+id/txtMaTB"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/tenTB"
+                style="@style/style_themltb_tieude" />
+            <EditText
+                android:id="@+id/txtTenTB"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/xuatXu"
+                style="@style/style_themltb_tieude" />
+            <EditText
+                android:id="@+id/txtXuatxu"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/sl"
+                style="@style/style_themltb_tieude" />
+            <EditText
+                android:id="@+id/txtSoluongTB"
+                android:inputType="number"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/style_themltb_tieude"
+                android:layout_width="115dp"
+                android:layout_height="57dp"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:text="@string/loaiTB" />
+
+            <Spinner
+                android:id="@+id/spTenloaiTB"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@android:color/transparent"
+                android:gravity="top" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btnThoatTB"
+                android:text="THOÁT"
+                style="@style/style_themltb_btn" />
+
+            <Button
+                android:id="@+id/btnLuuTB"
+                android:text="LƯU"
+                style="@style/style_themltb_btn" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

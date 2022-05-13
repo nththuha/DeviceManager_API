@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_bg"
+    android:orientation="vertical"
+    tools:context=".Controller.ThongTinThietBiActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground">
+
+        <ImageButton
+            android:id="@+id/imbBackCTTB"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:background="?android:selectableItemBackground"
+            android:src="@drawable/ic_arrow_back"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        <!--android:background="@color/blue_100"-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="30dp"
+            android:gravity="center"
+            android:text="QUẢN LÝ THIẾT BỊ"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/tvTieuDeTB"
+        android:text="CHI TIẾT THIẾT BỊ"
+        style="@style/textview_title_tb"
+        android:textSize="20sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/style_themltb_tieude"
+                android:text="@string/maTB" />
+
+            <EditText
+                android:id="@+id/txtMaTB"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/style_themltb_tieude"
+                android:text="@string/tenTB" />
+
+            <EditText
+                android:id="@+id/txtTenTB"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/style_themltb_tieude"
+                android:text="@string/xuatXu" />
+
+            <EditText
+                android:id="@+id/txtXuatxu"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/style_themltb_tieude"
+                android:text="@string/sl" />
+
+            <EditText
+                android:id="@+id/txtSoluongTB"
+                style="@style/style_themltb_tentltb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/style_themltb_tieude"
+                android:layout_width="115dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/loaiTB" />
+
+            <Spinner
+                android:id="@+id/spTenloaiTB"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@android:color/transparent"
+                android:gravity="center" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/btnLuuTB"
+            style="@style/style_themltb_btn"
+            android:layout_width="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="LƯU" />
+    </LinearLayout>
+
+</LinearLayout>
