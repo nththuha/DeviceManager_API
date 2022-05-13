@@ -35,10 +35,10 @@ public interface ChiTietSDAPI {
     Call<List<ChiTietSDEntity>> laySoLuongTheoMaPH(@Query("maPhong") String maPhong);
 
     @POST("chitietsd")
-    Call<ChiTietSDEntity> themChiTietSD(@Body ChiTietSDActivity chiTietSDActivity);
+    Call<ChiTietSDEntity> themChiTietSD(@Body ChiTietSDEntity chiTietSDEntity);
 
     @PUT("chitietsd")
-    Call<ChiTietSDEntity> suaChiTietSD(@Body ChiTietSDActivity chiTietSDActivity);
+    Call<ChiTietSDEntity> suaChiTietSD(@Body ChiTietSDEntity chiTietSDEntity);
 
     @DELETE("chitietsd/{idCTSD}")
     Call<Void> xoaChiTietSD(@Path("idCTSD") Integer idCTSD);
