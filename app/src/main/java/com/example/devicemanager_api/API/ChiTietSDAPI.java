@@ -22,8 +22,12 @@ public interface ChiTietSDAPI {
     BaseURL baseUrl = new BaseURL();
     String url = baseUrl.getBaseURL();
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
-    ChiTietSDAPI apiChiTietSDService = new Retrofit.Builder().baseUrl(url)
-            .addConverterFactory(GsonConverterFactory.create(gson)).build().create(ChiTietSDAPI.class);
+    ChiTietSDAPI apiChiTietSDService = new Retrofit
+            .Builder()
+            .baseUrl(url)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+            .create(ChiTietSDAPI.class);
 
     @GET("chitietsd")
     Call<List<ChiTietSDEntity>> layDSChiTietSD();

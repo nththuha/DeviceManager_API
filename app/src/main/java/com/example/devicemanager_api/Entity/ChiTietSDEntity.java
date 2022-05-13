@@ -15,11 +15,13 @@ public class ChiTietSDEntity implements Serializable {
     public ChiTietSDEntity() {
     }
 
-    public ChiTietSDEntity(Date ngaySD, int soLuongSD, String maTB, String maPhong) {
+    public ChiTietSDEntity(int idCTSD, Date ngaySD, int soLuongSD, String maTB, String maPhong) {
+        this.idCTSD = idCTSD;
         this.ngaySD = ngaySD;
         this.soLuongSD = soLuongSD;
         this.maTB = maTB;
         this.maPhong = maPhong;
+
     }
 
     public int getIdCTSD() {
@@ -46,19 +48,19 @@ public class ChiTietSDEntity implements Serializable {
         this.soLuongSD = soLuongSD;
     }
 
-    public String getMaTB() {
-        return maTB;
-    }
-
-    public void setMaTB(String maTB) {
-        this.maTB = maTB;
-    }
-
     public String getMaPhong() {
         return maPhong;
     }
 
     public void setMaPhong(String maPhong) {
         this.maPhong = maPhong;
+    }
+
+    public String getMaTB() {
+        return maTB;
+    }
+
+    public void setMaTB(String maTB) {
+        this.maTB = maTB;
     }
 }
