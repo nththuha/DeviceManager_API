@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/ic_bg"
+    tools:context=".Controller.NhanVienActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground">
+
+        <ImageButton
+            android:id="@+id/imbBack"
+            style="@style/style_img_btnback"
+            android:src="@drawable/ic_arrow_back"/>
+
+        <TextView
+            android:text="THÔNG TIN NHÂN VIÊN"
+            style="@style/style_tieude_QuanLy" />
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <SearchView
+        android:id="@+id/svNV"
+        style="@style/style_text_search"/>
+
+    <TextView
+        android:text="DANH SÁCH NHÂN VIÊN"
+        style="@style/style_tieude_DanhSach" />
+
+    <ListView
+        android:id="@+id/lvNV"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp" />
+
+</LinearLayout>
