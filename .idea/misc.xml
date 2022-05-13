@@ -16,8 +16,6 @@
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_login.xml" value="0.24615384615384617" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_phong_hoc.xml" value="0.25" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_thiet_bi.xml" value="0.25" />
-        <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/fragment_home_activity.xml" value="0.25" />
-        <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/fragment_taikhoan_activity.xml" value="0.2" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/item_spinner_maphong.xml" value="0.24895833333333334" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/item_spinner_matb.xml" value="0.24895833333333334" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/spinner_maphong_ctsd.xml" value="0.25" />
@@ -27,16 +25,22 @@
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_them_sua_ph.xml" value="0.23958333333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_themltb.xml" value="0.23958333333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_thongbao_dangnhap.xml" value="0.22780797101449277" />
+        <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_thongtin_nhanvien.xml" value="0.23505434782608695" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_xoa_ph.xml" value="0.23958333333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_xoaltb.xml" value="0.23958333333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_home.xml" value="0.23958333333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_home_fragment.xml" value="0.23958333333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_loai_thiet_bi.xml" value="0.22780797101449277" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_login.xml" value="0.176" />
+        <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_nhan_vien.xml" value="0.12158054711246201" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_phong_hoc.xml" value="0.22780797101449277" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_tai_khoan_fragment.xml" value="0.23958333333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_thiet_bi.xml" value="0.22780797101449277" />
+        <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/fragment_taikhoan_activity.xml" value="0.23505434782608695" />
+        <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/item_phonghoc_spinner.xml" value="0.23505434782608695" />
+        <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/item_selected_spinner.xml" value="0.23505434782608695" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/layout_loai_thiet_bi.xml" value="0.22780797101449277" />
+        <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/layout_nhan_vien.xml" value="0.23505434782608695" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/layout_phong_hoc.xml" value="0.22780797101449277" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/layout_thiet_bi.xml" value="0.22780797101449277" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/menu/activity_menu_home.xml" value="0.25" />
