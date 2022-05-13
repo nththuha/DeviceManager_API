@@ -30,6 +30,7 @@ public class AdapterChiTietSD extends ArrayAdapter<ChiTietSDEntity> {
     ThietBiEntity thietBi;
     TextView tvMaPhongSD, tvMaTBSD, tvSoLuongSD;
 
+
     public AdapterChiTietSD(@NonNull Context context, int resource, @NonNull ArrayList<ChiTietSDEntity> data) {
         super(context, resource, data);
         this.context = context;
