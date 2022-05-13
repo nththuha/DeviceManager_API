@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="230dp"
+    android:layout_height="40dp"
+    android:background="@drawable/round_border_purple60">
+
+    <TextView
+        android:id="@+id/tvSelected"
+        android:text="@string/app_name"
+        style="@style/style_spinner" />
+
+    <ImageView
+        android:id="@+id/imDropdown"
+        android:src="@drawable/icon_dropdown"
+        style="@style/style_imv_spinner" />
+
+</RelativeLayout>
