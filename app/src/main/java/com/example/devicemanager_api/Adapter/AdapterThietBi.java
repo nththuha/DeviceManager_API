@@ -20,14 +20,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.devicemanager_api.API.ChiTietThietBiAPI;
 import com.example.devicemanager_api.API.ThietBiAPI;
 import com.example.devicemanager_api.Controller.ChiTietThietBiActivity;
 import com.example.devicemanager_api.Controller.ThongTinThietBiActivity;
 import com.example.devicemanager_api.Controller.ThietBiActivity;
+import com.example.devicemanager_api.Entity.ChiTietTBEntity;
 import com.example.devicemanager_api.Entity.ThietBiEntity;
 import com.example.devicemanager_api.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -127,7 +130,7 @@ public class AdapterThietBi extends ArrayAdapter<ThietBiEntity> {
         btnXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                xoaThietBi_API(maTB);
+                xoa(maTB);
                 dialog.dismiss();
 
             }
@@ -140,7 +143,40 @@ public class AdapterThietBi extends ArrayAdapter<ThietBiEntity> {
         });
         dialog.show();
     }
+    public void xoa(String maThietBi){
+        ChiTietThietBiAPI.apiChiTietThietBiService.layDSChiTietThietBi().enqueue(new Callback<List<ChiTietTBEntity>>() {
+            @Override
+            public void onResponse(Call<List<ChiTietTBEntity>> call, Response<List<ChiTietTBEntity>> response) {
+                List<ChiTietTBEntity> list = new ArrayList<>();
+                for(ChiTietTBEntity x : response.body()){
+                    if(x.getMaThietBi().equals(maThietBi)){
+                        list.add(x);
+                    }
+                }
+                check(list,maThietBi);
+            }
 
+            @Override
+            public void onFailure(Call<List<ChiTietTBEntity>> call, Throwable t) {
+                Toast.makeText(context, "Lấy dữ liệu thất bại", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void check(List<ChiTietTBEntity> list,String maTB){
+        int check=0;
+        for(int i =0; i< list.size();i++){
+            if(!(list.get(i).getTinhTrang().trim().toString().equals("mới"))){
+                check=1;
+            }
+        }
+        if(check==0){
+            xoaChiTietThietBi(maTB);
+        }else{
+            thongBaoThanhCong(Gravity.CENTER, "Xóa thất bại thiết bị "+ maTB+"!");
+        }
+
+    }
     private void xoaThietBi_API(String maTB){
         ThietBiAPI.apiThietBiService.xoaThietBi(maTB).enqueue(new Callback<Void>() {
             @Override
@@ -152,6 +188,19 @@ public class AdapterThietBi extends ArrayAdapter<ThietBiEntity> {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(context, "Xóa thiết bị thất bại!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private void xoaChiTietThietBi(String maTB){
+        ChiTietThietBiAPI.apiChiTietThietBiService.xoaChiTietThietBi(maTB).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                xoaThietBi_API(maTB);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(context, "Xóa chi tiết thiết bị thất bại!", Toast.LENGTH_SHORT).show();
             }
         });
     }

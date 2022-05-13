@@ -33,5 +33,7 @@ public interface ChiTietThietBiAPI {
     @PUT("chitietthietbi")
     Call<ChiTietTBEntity> suaChitietThietBi(@Body ChiTietTBEntity chiTietTBEntity);
 
+    @DELETE("chitietthietbi/{maThietBi}")
+    Call<Void> xoaChiTietThietBi(@Path("maThietBi") String maThietBi);
 
 }
