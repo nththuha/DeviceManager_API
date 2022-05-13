@@ -16,6 +16,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ThietBiAPI {
     BaseURL baseUrl = new BaseURL();
@@ -26,6 +27,9 @@ public interface ThietBiAPI {
 
     @GET("thietbi")
     Call<List<ThietBiEntity>> layDSThietBi();
+
+    @GET("thietbi/tb")
+    Call<ThietBiEntity> layThietBi(@Query("maTB") String maTB);
 
     @POST("thietbi")
     Call<ThietBiEntity> themThietBi(@Body ThietBiEntity thietBiEntity);

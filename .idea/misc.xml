@@ -17,6 +17,10 @@
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_login.xml" value="0.24615384615384617" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_phong_hoc.xml" value="0.25" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_thiet_bi.xml" value="0.25" />
+        <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/item_spinner_maphong.xml" value="0.24895833333333334" />
+        <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/item_spinner_matb.xml" value="0.24895833333333334" />
+        <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/spinner_maphong_ctsd.xml" value="0.25" />
+        <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/spinner_matb_ctsd.xml" value="0.24895833333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_logout.xml" value="0.23958333333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_tbthanhcong.xml" value="0.23958333333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_them_sua_ph.xml" value="0.23958333333333334" />
