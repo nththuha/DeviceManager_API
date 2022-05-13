@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.278125" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_chitietsd.xml" value="0.17164179104477612" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_dialog_chitietsd.xml" value="0.25" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_dialog_logout.xml" value="0.25" />
@@ -34,6 +35,41 @@
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/layout_phong_hoc.xml" value="0.22780797101449277" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/layout_thiet_bi.xml" value="0.22780797101449277" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/menu/activity_menu_home.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable-v24/activity_onclick_item.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/activity_onclick_item1.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/arrow_next.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/cell_shape.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/ic_arrow_back.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/ic_baseline_circle_24.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/ic_circle_add.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/ic_date.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/ic_delete.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/ic_edit.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/ic_giam.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/ic_home.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_background.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/ic_lock_login.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/round_border90.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/round_border_blue10.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/round_border_green20.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/round_border_onclick.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/round_border_purple10.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/round_border_purple60.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/round_border_search.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/round_border_while30.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable-v24/wave.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1545" />
+        <entry key="app/src/main/res/layout/activity_chi_tiet_thiet_bi.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/activity_dialog_them_thietbi.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/activity_dialog_xoa_thietbi.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/activity_thiet_bi.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/fragment_taikhoan_activity.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/item_selected_spinnermaloaitb.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/item_thietbi_spinner.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/layout_chi_tiet_thiet_bi.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/layout_thiet_bi.xml" value="0.19429347826086957" />
       </map>
     </option>
   </component>
