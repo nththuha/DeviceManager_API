@@ -149,6 +149,7 @@ public class ThietBiActivity extends AppCompatActivity {
     }
 
     public void ThemCTTB_API(ChiTietTBEntity chiTietTBEntity){
+        System.out.println("hihihi");
         ChiTietThietBiAPI.apiChiTietThietBiService.themChiTietThietBi(chiTietTBEntity).enqueue(new Callback<ChiTietTBEntity>() {
             @Override
             public void onResponse(Call<ChiTietTBEntity> call, Response<ChiTietTBEntity> response) {
@@ -242,25 +243,18 @@ public class ThietBiActivity extends AppCompatActivity {
         dialog.show();
 
     }
-    private void findIDMax(){
-        max=0;
-        for(ChiTietTBEntity a : list){
-            if(a.getIdCTTB() > max){
-                max = a.getIdCTTB();
-            }
-        }
-    }
+
     public void themCTTB(Integer soluong, String maTB){
         ChiTietThietBiAPI.apiChiTietThietBiService.layDSChiTietThietBi().enqueue(new Callback<List<ChiTietTBEntity>>() {
             @Override
             public void onResponse(Call<List<ChiTietTBEntity>> call, Response<List<ChiTietTBEntity>> response) {
                 list = response.body();
-                findIDMax();
-                Integer dem = max;
+                Integer dem = list.get((list.size()-1)).getIdCTTB();
                 for(int i = 0;i<soluong;i++){
                     dem = dem+1;
                     ChiTietTBEntity chiTietTBEntity = new ChiTietTBEntity(dem,"mới",maTB);
                     ThemCTTB_API(chiTietTBEntity);
+
                 }
             }
 
