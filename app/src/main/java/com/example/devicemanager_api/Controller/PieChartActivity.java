@@ -221,7 +221,7 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
         listCTSD = chiTietSDs;
         if (listCTSD != null) {
             for (ChiTietSDEntity ct : listCTSD) {
-                 if (getDateSS(ct.getNgaySDForThongKe()) >= ngayBD && getDateSS(ct.getNgaySDForThongKe().trim()) <= ngayKT) {
+                 if (getDateSS(ct.getNgaySD()) >= ngayBD && getDateSS(ct.getNgaySD().trim()) <= ngayKT) {
                      newHistoryList.add(ct);
                  }
             }

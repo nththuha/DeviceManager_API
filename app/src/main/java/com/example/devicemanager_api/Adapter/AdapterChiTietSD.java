@@ -137,7 +137,7 @@ public class AdapterChiTietSD extends ArrayAdapter<ChiTietSDEntity> {
 
         tvMaPhong.setText(chiTietSD.getMaPhong());
         tvMaThietBi.setText(chiTietSD.getMaTB());
-        tvNgayMuon.setText(chiTietSD.getNgaySD().toString());
+        tvNgayMuon.setText(chiTietSD.getNgaySD());
         tvSoLuongM.setText("/" + chiTietSD.getSoLuongSD());
         slmuonM = chiTietSD.getSoLuongSD();
         btnTra.setOnClickListener(new View.OnClickListener() {

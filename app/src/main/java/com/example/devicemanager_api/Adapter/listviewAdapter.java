@@ -78,7 +78,7 @@ public class listviewAdapter extends BaseAdapter {
         }
 
         ChiTietSDEntity item = CTSDList.get(position);
-        holder.sttu.setText((item.getNgaySDForThongKe()));
+        holder.sttu.setText((item.getNgaySD()));
         holder.ngaySuDung.setText(item.getMaTB().toString());
         holder.tenThietBi.setText(item.getMaPhong().toString());
         holder.soluong.setText(""+item.getSoLuongSD());

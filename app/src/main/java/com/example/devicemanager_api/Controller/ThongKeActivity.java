@@ -167,7 +167,7 @@ public class ThongKeActivity extends AppCompatActivity {
         historyList = chiTietSDs;
         if (historyList != null) {
             for (ChiTietSDEntity ct : historyList) {
-                if (getDateSS(ct.getNgaySDForThongKe().trim()) >= ngayBD && getDateSS(ct.getNgaySDForThongKe().trim()) <= ngayKT) {
+                if (getDateSS(ct.getNgaySD().trim()) >= ngayBD && getDateSS(ct.getNgaySD().trim()) <= ngayKT) {
 //                    ct.setMaTB(dbtbi.layTenThietBi(ct.getMaTB()));
 //                    ct.setMaTB((ct.getMaTB()));
                     newHistoryList.add(ct);
@@ -221,7 +221,7 @@ public class ThongKeActivity extends AppCompatActivity {
             Row row = sheet.createRow(i + 1);
             row.createCell(0).setCellValue(historyList.get(i).getMaPhong());
             row.createCell(1).setCellValue(historyList.get(i).getMaTB());
-            row.createCell(2).setCellValue(historyList.get(i).getNgaySDForThongKe());
+            row.createCell(2).setCellValue(historyList.get(i).getNgaySD());
             row.createCell(3).setCellValue(historyList.get(i).getSoLuongSD());
         }
         String namefile = "thongke-sudung-"+ngayBD+"-"+ngayKT;
