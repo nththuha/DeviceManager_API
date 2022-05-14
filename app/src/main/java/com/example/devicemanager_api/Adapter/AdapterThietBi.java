@@ -231,7 +231,7 @@ public class AdapterThietBi extends ArrayAdapter<ThietBiEntity> {
         //xử lý vị trí của dialog
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.activity_dialog_tbthanhcong);
+        dialog.setContentView(R.layout.activity_dialog_tbthatbai);
 
         Window window = dialog.getWindow();
         if (window == null)
