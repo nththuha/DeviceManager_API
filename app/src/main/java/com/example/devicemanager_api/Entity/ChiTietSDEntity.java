@@ -2,7 +2,7 @@ package com.example.devicemanager_api.Entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class ChiTietSDEntity implements Serializable {

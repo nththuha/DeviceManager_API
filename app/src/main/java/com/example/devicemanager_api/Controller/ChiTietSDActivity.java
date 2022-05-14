@@ -145,7 +145,6 @@ public class ChiTietSDActivity extends AppCompatActivity {
         svCTSD = findViewById(R.id.svCTSD);
         imbBack = findViewById(R.id.imbBackCTSD);
         btnMuonCTTB = findViewById(R.id.btnMuonCTTB);
-        btnMuon = findViewById(R.id.btnMuon);
         btnTra = findViewById(R.id.btnTra);
         btnHuyM = findViewById(R.id.btnHuyM);
         btnHuyT = findViewById(R.id.btnHuyT);
@@ -514,6 +513,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
         btnMuon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(context, "on click", Toast.LENGTH_SHORT).show();
                 int sl = Integer.parseInt(txtSoLuongM.getText().toString());
                 if(sl <= 0 || sl > sldu){
                     Toast.makeText(ChiTietSDActivity.this, "Số lượng > 0 và < số lượng dư!", Toast.LENGTH_SHORT);

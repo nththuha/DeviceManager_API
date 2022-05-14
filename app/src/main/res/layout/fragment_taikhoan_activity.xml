@@ -64,7 +64,7 @@
                 android:id="@+id/tvMaNVTK"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_weight="2"/>
         </LinearLayout>
 
@@ -85,8 +85,8 @@
                 android:id="@+id/tvMatKhauTK"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:layout_weight="2"
+                android:textColor="@color/black"
                 android:inputType="textPassword"/>
         </LinearLayout>
         <LinearLayout
@@ -106,7 +106,7 @@
                 android:id="@+id/tvEmailTK"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_weight="2"/>
         </LinearLayout>
         <LinearLayout
@@ -126,7 +126,7 @@
                 android:id="@+id/tvchucVuTK"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_weight="2"/>
         </LinearLayout>
 
