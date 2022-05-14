@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_bg"
+    android:orientation="vertical"
+    tools:context=".Controller.ThongKeActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground">
+
+        <ImageButton
+            android:id="@+id/imbBack"
+            style="@style/style_img_btnback"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:text="Thống Kê Sử Dụng"
+            style="@style/style_tieude_QuanLy" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#1D9C27B0">
+
+
+        <EditText
+            android:id="@+id/ngyBD"
+            android:layout_width="217dp"
+            android:layout_height="50dp"
+            android:text="2000-01-01">
+
+        </EditText>
+
+
+        <EditText
+            android:id="@+id/ngyKT"
+            android:layout_width="187dp"
+            android:layout_height="50dp"
+            android:text="2022-12-12">
+
+        </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/relativeLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingRight="10dp"
+        android:layout_marginTop="10dp">
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnFilter"
+            android:layout_width="100dp"
+            android:text="Lọc"
+            style="@style/style_button_thongke"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/purple_100">
+
+        <TextView
+            android:layout_width="78dp"
+            android:layout_weight="1"
+            android:text="@string/ngaySD"
+            style="@style/style_text_thongke" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="@string/tenTB"
+            style="@style/style_text_thongke"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1.5"
+            android:text="@string/maPhong"
+            style="@style/style_text_thongke"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="SL"
+            style="@style/style_text_thongke"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listviewhuyen"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:divider="@null" />
+
+    <LinearLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:background="#0772AB9B">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnChart"
+            android:layout_width="164dp"
+            android:layout_marginStart="10dp"
+            android:text="Xem Chart"
+            style="@style/style_button_thongke" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnReport"
+            android:layout_width="189dp"
+            android:layout_marginEnd="10dp"
+            android:text="Xuất Báo Cáo"
+            style="@style/style_button_thongke" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,13 +1,15 @@
 package com.example.devicemanager_api.Entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 public class ChiTietSDEntity implements Serializable {
     private int idCTSD;
-    private String ngaySD;
+    private Date ngaySD;
     private int soLuongSD;
     private String maTB;
     private String maPhong;
@@ -15,7 +17,7 @@ public class ChiTietSDEntity implements Serializable {
     public ChiTietSDEntity() {
     }
 
-    public ChiTietSDEntity(int idCTSD, String ngaySD, int soLuongSD, String maTB, String maPhong) {
+    public ChiTietSDEntity(int idCTSD, Date ngaySD, int soLuongSD, String maTB, String maPhong) {
         this.idCTSD = idCTSD;
         this.ngaySD = ngaySD;
         this.soLuongSD = soLuongSD;
@@ -32,11 +34,18 @@ public class ChiTietSDEntity implements Serializable {
         this.idCTSD = idCTSD;
     }
 
-    public String getNgaySD() {
+    public Date getNgaySD() {
         return ngaySD;
     }
+    public String getNgaySDForThongKe(){
+        System.out.println("----------->>>" + ngaySD.toString());
+        java.sql.Date sqlDate = new java.sql.Date(ngaySD.getTime());
+        LocalDate localDate = sqlDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        System.out.println("----------->>>" + sqlDate.toString());
 
-    public void setNgaySD(String ngaySD) {
+        return sqlDate.toString();
+    }
+    public void setNgaySD(Date ngaySD) {
         this.ngaySD = ngaySD;
     }
 

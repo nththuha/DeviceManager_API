@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id = "@+id/relativeLayout1"
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:orientation="horizontal"
+        android:background = "@color/white" >
+
+        <TextView
+            android:id="@+id/sNo"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:text="Phòng"
+            style="@style/style_text_row_thongke" />
+
+        <TextView
+            android:id="@+id/dateuse"
+            android:layout_width="5dp"
+            android:layout_weight="2"
+            android:text="Ngày Mượn"
+            style="@style/style_text_row_thongke"/>
+
+        <TextView
+            android:id="@+id/deviceid"
+            android:layout_width="16dp"
+            android:layout_weight="1.5"
+            android:text="Thiết Bị"
+            style="@style/style_text_row_thongke"/>
+
+        <TextView
+            android:id="@+id/qnty"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="Số Lượng"
+            style="@style/style_text_row_thongke"/>
+    </LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
