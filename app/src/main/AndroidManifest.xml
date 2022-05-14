@@ -4,7 +4,7 @@
     package="com.example.devicemanager_api">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DeviceManager_API"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Controller.ChiTietDatActivity"
+            android:exported="false" />
         <activity
             android:name=".Controller.NhanVienActivity"
             android:exported="false" />
@@ -47,7 +50,6 @@
         <activity
             android:name=".Controller.ThongKeActivity"
             android:exported="false" />
-
         <activity
             android:name=".Controller.PieChartActivity"
             android:exported="false" />

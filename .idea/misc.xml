@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_chi_tiet_dat.xml" value="0.25" />
+        <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_chitiet_dat.xml" value="0.2" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_chitietsd.xml" value="0.17164179104477612" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_dialog_chitietsd.xml" value="0.25" />
+        <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_dialog_dat_tb.xml" value="0.2" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_dialog_logout.xml" value="0.25" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_dialog_muon_tb.xml" value="0.25" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_dialog_tbthanhcong.xml" value="0.25" />
@@ -17,11 +20,14 @@
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_login.xml" value="0.24615384615384617" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_phong_hoc.xml" value="0.25" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_thiet_bi.xml" value="0.25" />
+        <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/dialog_chitiet_dat.xml" value="0.24895833333333334" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/fragment_taikhoan_activity.xml" value="0.2361111111111111" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/item_spinner_maphong.xml" value="0.24895833333333334" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/item_spinner_matb.xml" value="0.24895833333333334" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/spinner_maphong_ctsd.xml" value="0.25" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/spinner_matb_ctsd.xml" value="0.24895833333333334" />
+        <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/menu/activity_menu_ctsd.xml" value="0.1" />
+        <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_logout.xml" value="0.23958333333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_tbthanhcong.xml" value="0.23958333333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_them_sua_ph.xml" value="0.23958333333333334" />

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/itemCTSD"
+        android:title="Chi tiết sử dụng"/>
+    <item android:id="@+id/itemCTD"
+        android:title="Chi tiết đặt"/>
+</menu>

@@ -152,6 +152,7 @@ public class HomeFragmentActivity extends Fragment {
 
                 Toast.makeText(getContext(), "Chi tiết sử dụng", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getContext(),ChiTietSDActivity.class));
+                //startActivity(new Intent(getContext(),ChiTietDatActivity.class));
             }
         });
 
