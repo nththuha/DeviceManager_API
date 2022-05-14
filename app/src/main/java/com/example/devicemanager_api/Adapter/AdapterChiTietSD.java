@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -143,7 +144,19 @@ public class AdapterChiTietSD extends ArrayAdapter<ChiTietSDEntity> {
         btnTra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                btnTra.setBackgroundResource(R.drawable.activity_onclick_item);
+                int sltra = Integer.parseInt(txtSoLuongT.getText().toString());
+                int slmuon = 0;
+                slmuon = slmuonM - sltra;
+                if(sltra == 0 && slmuon != 0){
+                    Toast.makeText(context, "Số lượng trả lớn hơn 0!", Toast.LENGTH_SHORT).show();
+                    txtSoLuongT.setText("");
+                    return;
+                }
+                if(slmuon < 0){
+                    Toast.makeText(context, "Số lượng trả nhiều hơn số lượng mượn!", Toast.LENGTH_SHORT).show();
+                    txtSoLuongT.setText("");
+                    return;
+                }
                 hienThiYN(Gravity.CENTER,chiTietSD);
                 dialog.dismiss();
             }
@@ -294,7 +307,7 @@ public class AdapterChiTietSD extends ArrayAdapter<ChiTietSDEntity> {
                 int sltra = Integer.parseInt(txtSoLuongT.getText().toString());
                 int slmuon = 0;
                 slmuon = slmuonM - sltra;
-                if(slmuon == 0){
+                if(slmuon == 0 && sltra != 0){
                     xoaChiTietSD(chiTietSD.getIdCTSD());
                     thongBaoThanhCong(Gravity.CENTER,"Trả thiết bị thành công!");
                     dialog.dismiss();

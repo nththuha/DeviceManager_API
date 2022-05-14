@@ -53,14 +53,14 @@ public class ChiTietSDActivity extends AppCompatActivity {
     long millis = System.currentTimeMillis();
 
     ListView lvChiTietSD;
-    Spinner spMaPhong,spMaThietBi;
+    Spinner spMaPhong, spMaThietBi;
     ProgressBar pbLoad;
     SearchView svCTSD;
     ImageButton imbBack;
     Button btnMuon, btnHuyM;
     Button btnMuonCTTB;
     EditText txtSoLuongM;
-    TextView tvNgay,tvSoLuongDu;
+    TextView tvNgay, tvSoLuongDu;
 
     AdapterChiTietSD adapterChiTietSD;
     AdapterMaPhong adapterMaPhong;
@@ -70,6 +70,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
     ArrayList<ChiTietSDEntity> filter;
     String maPhong = "";
     String maTB = "";
+    int sl = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,6 +81,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
         setControl();
         setEvent();
     }
+
     private void setControl() {
         lvChiTietSD = findViewById(R.id.lvChiTietSD);
         pbLoad = findViewById(R.id.pbLoad);
@@ -88,6 +90,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
         btnMuonCTTB = findViewById(R.id.btnMuonCTTB);
         btnHuyM = findViewById(R.id.btnHuyM);
     }
+
     private void setEvent() {
         getDSChiTiet();
         imbBack.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +105,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
                 getFilter(s);
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String s) {
                 getFilter(s);
@@ -115,11 +119,13 @@ public class ChiTietSDActivity extends AppCompatActivity {
             }
         });
     }
-    public void loadListView(){
-        adapterChiTietSD = new AdapterChiTietSD(this,R.layout.activity_item_chitietsd, chiTietSDs);
+
+    public void loadListView() {
+        adapterChiTietSD = new AdapterChiTietSD(this, R.layout.activity_item_chitietsd, chiTietSDs);
         lvChiTietSD.setAdapter(adapterChiTietSD);
     }
-    public void loadSpinner(){
+
+    public void loadSpinner() {
         PhongHocAPI.apiPhonghocService.layDSPhongHoc().enqueue(new Callback<List<PhongHocEntity>>() {
             @Override
             public void onResponse(Call<List<PhongHocEntity>> call, Response<List<PhongHocEntity>> response) {
@@ -128,25 +134,28 @@ public class ChiTietSDActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<List<ThietBiEntity>> call, Response<List<ThietBiEntity>> response) {
                         List thietBi = response.body();
-                        Log.d("ctshPhongHoc", "onResponse: "+phongHoc.size());
-                        dialogMuonTB(Gravity.CENTER,thietBi,phongHoc);
+                        Log.d("ctshPhongHoc", "onResponse: " + phongHoc.size());
+                        dialogMuonTB(Gravity.CENTER, thietBi, phongHoc);
                     }
+
                     @Override
                     public void onFailure(Call<List<ThietBiEntity>> call, Throwable t) {
 
                     }
                 });
             }
+
             @Override
             public void onFailure(Call<List<PhongHocEntity>> call, Throwable t) {
 
             }
         });
     }
+
     private void getFilter(String s) {
         filter = new ArrayList<>();
-        for(ChiTietSDEntity e : chiTietSDs){
-            if(e.getMaTB().toLowerCase().contains(s.toLowerCase()) || e.getMaPhong().toLowerCase().contains(s.toLowerCase())){
+        for (ChiTietSDEntity e : chiTietSDs) {
+            if (e.getMaTB().toLowerCase().contains(s.toLowerCase()) || e.getMaPhong().toLowerCase().contains(s.toLowerCase())) {
                 filter.add(e);
             }
         }
@@ -160,6 +169,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
                     .show();*/
         }
     }
+
     public void getDSChiTiet() {
         ChiTietSDAPI.apiChiTietSDService.layDSChiTietSD().enqueue(new Callback<List<ChiTietSDEntity>>() {
             @Override
@@ -169,12 +179,14 @@ public class ChiTietSDActivity extends AppCompatActivity {
                 loadListView();
                 pbLoad.setVisibility(View.GONE);
             }
+
             @Override
             public void onFailure(Call<List<ChiTietSDEntity>> call, Throwable t) {
                 Toast.makeText(ChiTietSDActivity.this, "Load chi tiết thất bại!", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
     private void dialogMuonTB(int gravity, List thietBi, List phongHoc) {
         //xử lý vị trí của dialog
         final Dialog dialog = new Dialog(this);
@@ -209,18 +221,19 @@ public class ChiTietSDActivity extends AppCompatActivity {
         date = new Date(millis);
         tvNgay.setText(date.toString());
         //----------------------------spinner------------------------------
-        adapterMaPhong = new AdapterMaPhong(context,R.layout.spinner_maphong_ctsd,phongHoc);
+        adapterMaPhong = new AdapterMaPhong(context, R.layout.spinner_maphong_ctsd, phongHoc);
         spMaPhong.setAdapter(adapterMaPhong);
         spMaPhong.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 maPhong = adapterMaPhong.getItem(i).getMaPhong();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-        adapterMaTB = new AdapterMaTB(getApplication(),R.layout.spinner_matb_ctsd,thietBi);
+        adapterMaTB = new AdapterMaTB(getApplication(), R.layout.spinner_matb_ctsd, thietBi);
         spMaThietBi.setAdapter(adapterMaTB);
         spMaThietBi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -230,18 +243,18 @@ public class ChiTietSDActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ThietBiEntity> call, Response<ThietBiEntity> response) {
                         thietBiEntity = new ThietBiEntity();
-                        if(response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             thietBiEntity = response.body();
-                            int tongsl =  thietBiEntity.getSoLuong();
+                            int tongsl = thietBiEntity.getSoLuong();
                             ChiTietSDAPI.apiChiTietSDService.laySoLuongTheoMaTB(maTB).enqueue(new Callback<List<ChiTietSDEntity>>() {
                                 @Override
                                 public void onResponse(Call<List<ChiTietSDEntity>> call, Response<List<ChiTietSDEntity>> response) {
                                     chiTietSDs = new ArrayList<>();
                                     int slmuon = 0, sldu = 0;
-                                    if(response.isSuccessful()){
+                                    if (response.isSuccessful()) {
                                         chiTietSDs = (ArrayList<ChiTietSDEntity>) response.body();
-                                        for(ChiTietSDEntity ct : chiTietSDs){
-                                            if(maTB.equals(ct.getMaTB())){
+                                        for (ChiTietSDEntity ct : chiTietSDs) {
+                                            if (maTB.equals(ct.getMaTB())) {
                                                 slmuon += ct.getSoLuongSD();
                                             }
                                         }
@@ -256,11 +269,13 @@ public class ChiTietSDActivity extends AppCompatActivity {
                             });
                         }
                     }
+
                     @Override
                     public void onFailure(Call<ThietBiEntity> call, Throwable t) {
                     }
                 });
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -270,20 +285,42 @@ public class ChiTietSDActivity extends AppCompatActivity {
         btnMuon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int sl = Integer.parseInt(txtSoLuongM.getText().toString());
-                if(txtSoLuongM.equals("")){
-                    Toast.makeText(ChiTietSDActivity.this, "Vui lòng nhập số lượng!", Toast.LENGTH_SHORT);
+                sl = Integer.parseInt(txtSoLuongM.getText().toString());
+                if (sl <= 0) {
+                    Toast.makeText(ChiTietSDActivity.this, "Số lượng mượn phải lớn hơn 0!", Toast.LENGTH_SHORT);
+                    txtSoLuongM.setText("");
                     return;
                 }
-                if(sl <= 0 ){
-                    Toast.makeText(ChiTietSDActivity.this, "Số lượng phải lớn hơn 0 !", Toast.LENGTH_SHORT);
-                    return;
-                }
-                themCTSBvaoDB(new ChiTietSDEntity(5,date.toString(),sl,maTB,maPhong));
-                getDSChiTiet();
-                //txtSoLuongM.setText("");
-                dialog.dismiss();
-
+                ChiTietSDAPI.apiChiTietSDService.laySoLuongTheoMaTB(maTB).enqueue(new Callback<List<ChiTietSDEntity>>() {
+                    @Override
+                    public void onResponse(Call<List<ChiTietSDEntity>> call, Response<List<ChiTietSDEntity>> response) {
+                        chiTietSDs = new ArrayList<>();
+                        int slmuon = 0, sldu = 0;
+                        int tongsl = thietBiEntity.getSoLuong();
+                        if (response.isSuccessful()) {
+                            chiTietSDs = (ArrayList<ChiTietSDEntity>) response.body();
+                            for (ChiTietSDEntity ct : chiTietSDs) {
+                                if (maTB.equals(ct.getMaTB())) {
+                                    slmuon += ct.getSoLuongSD();
+                                }
+                            }
+                            sldu = tongsl - slmuon;
+                            if (sl > sldu) {
+                                Toast.makeText(ChiTietSDActivity.this, "Số lượng mượn ít hơn số lượng hiện tại!", Toast.LENGTH_SHORT);
+                                txtSoLuongM.setText("");
+                                return;
+                            }
+                            else{
+                                themCTSBvaoDB(new ChiTietSDEntity(5, date.toString(), sl, maTB, maPhong));
+                                getDSChiTiet();
+                                dialog.dismiss();
+                            }
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<List<ChiTietSDEntity>> call, Throwable t) {
+                    }
+                });
             }
         });
         btnHuyM.setOnClickListener(new View.OnClickListener() {
@@ -294,6 +331,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
         });
         dialog.show();
     }
+
     private void thongBaoThanhCong(int gravity, String text) {
         //xử lý vị trí của dialog
         final Dialog dialog = new Dialog(this);
@@ -320,12 +358,13 @@ public class ChiTietSDActivity extends AppCompatActivity {
         tvThongBao.setText(text);
         dialog.show();
     }
-    private void themCTSBvaoDB(ChiTietSDEntity chiTietSD){
+
+    private void themCTSBvaoDB(ChiTietSDEntity chiTietSD) {
         Log.d("abcccc", "themCTSBvaoDB: abc");
         ChiTietSDAPI.apiChiTietSDService.themChiTietSD(chiTietSD).enqueue(new Callback<ChiTietSDEntity>() {
             @Override
             public void onResponse(Call<ChiTietSDEntity> call, Response<ChiTietSDEntity> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     getDSChiTiet();
                     thongBaoThanhCong(Gravity.CENTER, "Mượn " + chiTietSD.getMaTB() + " thành công!");
                     return;
