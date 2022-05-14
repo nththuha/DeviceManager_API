@@ -85,6 +85,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chitietsd);
         context = this;
+        date = new Date(millis);
         setContro();
         setEvent();
     }
@@ -509,26 +510,21 @@ public class ChiTietSDActivity extends AppCompatActivity {
 
             }
         });
-
         //----------------------------end_spinner------------------------------
         btnMuon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int sl = Integer.parseInt(txtSoLuongM.getText().toString());
-                /*if (TextUtils.isEmpty(txtSoLuongSD.getText().toString().trim())){
-                    txtSoLuongSD.requestFocus();
-                    txtSoLuongSD.setError(context.getResources().getString(R.string.erorr_soLuongTrong));
+                if(sl <= 0 || sl > sldu){
+                    Toast.makeText(ChiTietSDActivity.this, "Số lượng > 0 và < số lượng dư!", Toast.LENGTH_SHORT);
+                    return;
                 }
-                if(sl > sldu || sl <= 0){
-                    txtSoLuongSD.requestFocus();
-                    txtSoLuongSD.setError(context.getResources().getString(R.string.erorr_soLuongMuon + sldu));
-                }*/
                 //thongBaoThanhCong(Gravity.CENTER,"Mượn thiết bị thành công "+maTB+"!");
                 themCTSBvaoDB(new ChiTietSDEntity(5,date,sl,maTB,maPhong));
                 //themCTSBvaoDB(new ChiTietSDEntity(date,sl,maTB,maPhong));
                 /*int slmoi = Integer.parseInt(dbThietBi.laySLThietBi(maThietBi)) - Integer.parseInt(dbChiTietSD.layTongSLMuonMatb(maThietBi));
-                tvSoLuongDu.setText("/"+slmoi);
-                txtSoLuongSD.setText("");*/
+                tvSoLuongDu.setText("/"+slmoi);*/
+                txtSoLuongM.setText("");
                 dialog.show();
 
             }
