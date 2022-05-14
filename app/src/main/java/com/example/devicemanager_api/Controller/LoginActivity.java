@@ -4,9 +4,11 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,6 +39,13 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -100,7 +109,33 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<TaiKhoanEntity> call, Response<TaiKhoanEntity> response) {
                 TaiKhoanEntity tk = response.body();
                 String matKhauMoi = taoMatKhau();
-//                guiMail(tk.getEmail(), matKhauMoi);
+                try {
+                    tk.setMatKhau(maHoa(matKhauMoi));
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (NoSuchPaddingException e) {
+                    e.printStackTrace();
+                } catch (IllegalBlockSizeException e) {
+                    e.printStackTrace();
+                } catch (BadPaddingException e) {
+                    e.printStackTrace();
+                } catch (InvalidKeyException e) {
+                    e.printStackTrace();
+                }
+                TaiKhoanAPI.apiTaiKhoanService.suaTaiKhoan(tk).enqueue(new Callback<TaiKhoanEntity>() {
+                    @Override
+                    public void onResponse(Call<TaiKhoanEntity> call, Response<TaiKhoanEntity> response) {
+                        if(response.isSuccessful()){
+                            Toast.makeText(LoginActivity.this, "Sửa mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<TaiKhoanEntity> call, Throwable t) {
+
+                    }
+                });
+                guiMail(tk.getEmail(), matKhauMoi);
             }
 
             @Override
@@ -190,32 +225,45 @@ public class LoginActivity extends AppCompatActivity {
         return value + "";
     }
 
-//    private void guiMail(String mailToSend, String matKhauMoi) {
-//        Properties pros = new Properties();
-//        pros.put("mail.smtp.auth", "true");
-//        pros.put("mail.smtp.starttls.enable", "true");
-//        pros.put("mail.smtp.host", "smtp.gmail.com");
-//        pros.put("mail.smtp.port", "587");
-//        Session session = Session.getInstance(pros, new javax.mail.Authenticator() {
-//            @Override
-//            protected PasswordAuthentication getPasswordAuthentication() {
-//                return new PasswordAuthentication(mail, password);
-//            }
-//        });
-//        try {
-//            Message message = new MimeMessage(session);
-//            message.setFrom(new InternetAddress(mail));
-//            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailToSend));
-//            message.setSubject("APP QUẢN LÝ THIẾT BỊ TRƯỜNG HỌC - LẤY LẠI MẬT KHẨU");
-//            message.setText("Mật khẩu mới của bạn là: " + matKhauMoi);
-//            Transport.send(message);
-//            thongBao(Gravity.CENTER, "Mật khẩu mới đã được gửi vào mail!");
-//
-//        } catch (MessagingException e) {
-//            Log.e("Lỗi", e.getMessage());
-//        }
-//        tvForgotPass.setEnabled(true);
-//    }
+    private void guiMail(String mailToSend, String matKhauMoi) {
+        Properties pros = new Properties();
+        pros.put("mail.smtp.auth", "true");
+        pros.put("mail.smtp.starttls.enable", "true");
+        pros.put("mail.smtp.host", "smtp.gmail.com");
+        pros.put("mail.smtp.port", "587");
+        Session session = Session.getInstance(pros, new javax.mail.Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(mail, password);
+            }
+        });
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(mail));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailToSend));
+            message.setSubject("APP QUẢN LÝ THIẾT BỊ TRƯỜNG HỌC - LẤY LẠI MẬT KHẨU");
+            message.setText("Mật khẩu mới của bạn là: " + matKhauMoi);
+            new sendMail().execute(message);
+            thongBao(Gravity.CENTER, "Mật khẩu mới đã được gửi vào mail!");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        tvForgotPass.setEnabled(true);
+    }
+
+    private class sendMail extends AsyncTask<Message, String, String>{
+        @Override
+        protected String doInBackground(Message... messages) {
+            try {
+                Transport.send(messages[0]);
+                return "Thành công";
+            } catch (MessagingException e) {
+                e.printStackTrace();
+                return "Thất bại";
+            }
+        }
+    }
 
     private void startAnimation() {
         Animation animation = new AnimationUtils().loadAnimation(this, R.anim.anim);
