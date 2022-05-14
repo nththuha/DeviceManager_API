@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ChiTietSDEntity implements Serializable {
     private int idCTSD;
-    private Date ngaySD;
+    private String ngaySD;
     private int soLuongSD;
     private String maTB;
     private String maPhong;
@@ -15,7 +15,7 @@ public class ChiTietSDEntity implements Serializable {
     public ChiTietSDEntity() {
     }
 
-    public ChiTietSDEntity(int idCTSD, Date ngaySD, int soLuongSD, String maTB, String maPhong) {
+    public ChiTietSDEntity(int idCTSD, String ngaySD, int soLuongSD, String maTB, String maPhong) {
         this.idCTSD = idCTSD;
         this.ngaySD = ngaySD;
         this.soLuongSD = soLuongSD;
@@ -32,11 +32,11 @@ public class ChiTietSDEntity implements Serializable {
         this.idCTSD = idCTSD;
     }
 
-    public Date getNgaySD() {
+    public String getNgaySD() {
         return ngaySD;
     }
 
-    public void setNgaySD(Date ngaySD) {
+    public void setNgaySD(String ngaySD) {
         this.ngaySD = ngaySD;
     }
 

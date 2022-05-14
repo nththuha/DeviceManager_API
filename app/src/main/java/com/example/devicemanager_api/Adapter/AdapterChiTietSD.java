@@ -75,7 +75,7 @@ public class AdapterChiTietSD extends ArrayAdapter<ChiTietSDEntity> {
         });*/
         tvMaPhongSD.setText(chiTietSD.getMaPhong());
         tvMaTBSD.setText(chiTietSD.getMaTB());
-        tvSoLuongSD.setText(chiTietSD.getSoLuongSD() + "/"+sumSL);
+        tvSoLuongSD.setText(chiTietSD.getSoLuongSD()+"");
         return convertView;
     }
 

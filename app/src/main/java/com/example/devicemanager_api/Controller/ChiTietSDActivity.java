@@ -315,6 +315,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
         btnTra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btnTra.setBackgroundResource(R.drawable.activity_onclick_item);
                 hienThiYN(Gravity.CENTER,chiTietSDs.get(i));
                 dialog.dismiss();
             }
@@ -513,14 +514,15 @@ public class ChiTietSDActivity extends AppCompatActivity {
         btnMuon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btnMuon.setBackgroundResource(R.drawable.activity_onclick_item);
                 Toast.makeText(context, "on click", Toast.LENGTH_SHORT).show();
                 int sl = Integer.parseInt(txtSoLuongM.getText().toString());
-                if(sl <= 0 || sl > sldu){
+                /*if(sl <= 0 || sl > sldu){
                     Toast.makeText(ChiTietSDActivity.this, "Số lượng > 0 và < số lượng dư!", Toast.LENGTH_SHORT);
                     return;
-                }
+                }*/
                 //thongBaoThanhCong(Gravity.CENTER,"Mượn thiết bị thành công "+maTB+"!");
-                themCTSBvaoDB(new ChiTietSDEntity(5,date,sl,maTB,maPhong));
+                themCTSBvaoDB(new ChiTietSDEntity(5,date.toString(),sl,maTB,maPhong));
                 //themCTSBvaoDB(new ChiTietSDEntity(date,sl,maTB,maPhong));
                 /*int slmoi = Integer.parseInt(dbThietBi.laySLThietBi(maThietBi)) - Integer.parseInt(dbChiTietSD.layTongSLMuonMatb(maThietBi));
                 tvSoLuongDu.setText("/"+slmoi);*/
