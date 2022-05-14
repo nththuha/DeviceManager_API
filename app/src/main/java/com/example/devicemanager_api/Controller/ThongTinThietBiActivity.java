@@ -18,9 +18,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.devicemanager_api.API.ChiTietThietBiAPI;
 import com.example.devicemanager_api.API.LoaiThietBiAPI;
 import com.example.devicemanager_api.API.ThietBiAPI;
 import com.example.devicemanager_api.Adapter.AdapterTenLoaiThietBi;
+import com.example.devicemanager_api.Entity.ChiTietTBEntity;
 import com.example.devicemanager_api.Entity.LoaiThietBiEntity;
 import com.example.devicemanager_api.Entity.ThietBiEntity;
 import com.example.devicemanager_api.R;
@@ -42,6 +44,7 @@ public class ThongTinThietBiActivity extends AppCompatActivity {
     String maloaiTB;
     ImageView imbBack;
     TextView tvTieuDeTB;
+    Integer slbandau;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,20 +70,21 @@ public class ThongTinThietBiActivity extends AppCompatActivity {
         });
     }
 
-    private void loadDL(List loaiTB){
+    private void loadDL(List loaiTB) {
         Intent intent = getIntent();
         ThietBiEntity thietBi = (ThietBiEntity) intent.getSerializableExtra("thietbi");
-        tvTieuDeTB.setText("THÔNG TIN THIẾT BỊ: "+thietBi.getTenTB());
+        tvTieuDeTB.setText("THÔNG TIN THIẾT BỊ: " + thietBi.getTenTB());
         txtMaTB.setText(thietBi.getMaTB());
         txtMaTB.setEnabled(false);
         txtTenTB.setText(thietBi.getTenTB());
         txtXuatxu.setText(thietBi.getXuatXu());
-        txtSoluong.setText(thietBi.getSoLuong()+"");
-        adapterTenLoaiThietBi = new AdapterTenLoaiThietBi(getApplicationContext(),R.layout.item_selected_spinnermaloaitb,loaiTB);
+        txtSoluong.setText(thietBi.getSoLuong() + "");
+        slbandau = thietBi.getSoLuong();
+        adapterTenLoaiThietBi = new AdapterTenLoaiThietBi(getApplicationContext(), R.layout.item_selected_spinnermaloaitb, loaiTB);
         spTenloaiTB.setAdapter(adapterTenLoaiThietBi);
         ArrayList<LoaiThietBiEntity> loaiThietBis = (ArrayList<LoaiThietBiEntity>) loaiTB;
-        for(int i =0;i<loaiThietBis.size();i++){
-            if(loaiThietBis.get(i).getMaLoaiTB().trim().equals(thietBi.getMaLoaiTB().trim())){
+        for (int i = 0; i < loaiThietBis.size(); i++) {
+            if (loaiThietBis.get(i).getMaLoaiTB().trim().equals(thietBi.getMaLoaiTB().trim())) {
                 spTenloaiTB.setSelection(i);
             }
         }
@@ -112,27 +116,37 @@ public class ThongTinThietBiActivity extends AppCompatActivity {
                 String tenTB = txtTenTB.getText().toString();
                 String xuatxu = txtXuatxu.getText().toString();
                 String soluong = txtSoluong.getText().toString();
-                if(tenTB.equals("")){
+                if (tenTB.equals("")) {
                     Toast.makeText(ThongTinThietBiActivity.this, "Tên thiết bị không được để trống!", Toast.LENGTH_SHORT).show();
                     return;
-                }if(xuatxu.equals("")){
+                }
+                if (xuatxu.equals("")) {
                     Toast.makeText(ThongTinThietBiActivity.this, "Xuất xứ không được để trống!", Toast.LENGTH_SHORT).show();
                     return;
-                }if(soluong.equals("")){
-                    Toast.makeText(ThongTinThietBiActivity.this, "Số lượg không được để trống!", Toast.LENGTH_SHORT).show();
+                }
+                if (soluong.equals("")) {
+                    Toast.makeText(ThongTinThietBiActivity.this, "Số lượng không được để trống!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (Integer.parseInt(soluong) < slbandau) {
+                    Toast.makeText(ThongTinThietBiActivity.this, "Số lượng phải lớn hơn hoặc bằng số lượng ban đầu!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                suaThietBi(new ThietBiEntity(maTB,tenTB, xuatxu, Integer.parseInt(soluong),maloaiTB));
-                tvTieuDeTB.setText("CHI TIẾT THIẾT BỊ: "+tenTB);
+                suaThietBi(new ThietBiEntity(maTB, tenTB, xuatxu, Integer.parseInt(soluong), maloaiTB));
+                tvTieuDeTB.setText("THÔNG TIN THIẾT BỊ: " + tenTB);
+                Integer slthaydoi = Integer.parseInt(soluong) - slbandau;
+                if (slthaydoi == 0) return;
+                themCTTB(slthaydoi, maTB);
             }
         });
     }
-    private void suaThietBi(ThietBiEntity thietbi){
+
+    private void suaThietBi(ThietBiEntity thietbi) {
         ThietBiAPI.apiThietBiService.suaThietBi(thietbi).enqueue(new Callback<ThietBiEntity>() {
             @Override
             public void onResponse(Call<ThietBiEntity> call, Response<ThietBiEntity> response) {
-                thongBaoThanhCong(Gravity.CENTER,"Cập nhật thành công "+thietbi.getTenTB()+"!");
+                thongBaoThanhCong(Gravity.CENTER, "Cập nhật thành công " + thietbi.getTenTB() + "!");
             }
 
             @Override
@@ -141,6 +155,41 @@ public class ThongTinThietBiActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void themCTTB(Integer soluong, String maTB) {
+        ChiTietThietBiAPI.apiChiTietThietBiService.layDSChiTietThietBi().enqueue(new Callback<List<ChiTietTBEntity>>() {
+            @Override
+            public void onResponse(Call<List<ChiTietTBEntity>> call, Response<List<ChiTietTBEntity>> response) {
+                List<ChiTietTBEntity> list = new ArrayList<>();
+                list = response.body();
+                Integer dem = list.get((list.size() - 1)).getIdCTTB();
+                for (int i = 0; i < soluong; i++) {
+                    dem = dem + 1;
+                    ChiTietTBEntity chiTietTBEntity = new ChiTietTBEntity(dem, "mới", maTB);
+                    ThemCTTB_API(chiTietTBEntity);
+                }
+            }
+
+            public void ThemCTTB_API(ChiTietTBEntity chiTietTBEntity) {
+                ChiTietThietBiAPI.apiChiTietThietBiService.themChiTietThietBi(chiTietTBEntity).enqueue(new Callback<ChiTietTBEntity>() {
+                    @Override
+                    public void onResponse(Call<ChiTietTBEntity> call, Response<ChiTietTBEntity> response) {
+                    }
+
+                    @Override
+                    public void onFailure(Call<ChiTietTBEntity> call, Throwable t) {
+                        Toast.makeText(ThongTinThietBiActivity.this, "Xảy ra lổi ở Chi Tiết Thiết Bị", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call<List<ChiTietTBEntity>> call, Throwable t) {
+                Toast.makeText(ThongTinThietBiActivity.this, "Lấy dữ liệu thất bại", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void thongBaoThanhCong(int gravity, String text) {
         //xử lý vị trí của dialog
         final Dialog dialog = new Dialog(this);
