@@ -14,16 +14,12 @@ public class ChiTietSDEntity implements Serializable {
     private String maTB;
     private String maPhong;
 
-    public ChiTietSDEntity() {
-    }
-
     public ChiTietSDEntity(int idCTSD, String ngaySD, int soLuongSD, String maTB, String maPhong) {
         this.idCTSD = idCTSD;
         this.ngaySD = ngaySD;
         this.soLuongSD = soLuongSD;
         this.maTB = maTB;
         this.maPhong = maPhong;
-
     }
 
     public int getIdCTSD() {
