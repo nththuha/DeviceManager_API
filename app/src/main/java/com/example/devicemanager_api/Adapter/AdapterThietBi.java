@@ -155,7 +155,6 @@ public class AdapterThietBi extends ArrayAdapter<ThietBiEntity> {
                 }
                 check(list,maThietBi);
             }
-
             @Override
             public void onFailure(Call<List<ChiTietTBEntity>> call, Throwable t) {
                 Toast.makeText(context, "Lấy dữ liệu thất bại", Toast.LENGTH_SHORT).show();
@@ -173,9 +172,8 @@ public class AdapterThietBi extends ArrayAdapter<ThietBiEntity> {
         if(check==0){
             xoaChiTietThietBi(maTB);
         }else{
-            thongBaoThanhCong(Gravity.CENTER, "Xóa thất bại thiết bị "+ maTB+"!");
+            thongBaoThatBai(Gravity.CENTER, "Xóa thất bại thiết bị "+ maTB+"!");
         }
-
     }
     private void xoaThietBi_API(String maTB){
         ThietBiAPI.apiThietBiService.xoaThietBi(maTB).enqueue(new Callback<Void>() {
@@ -197,15 +195,39 @@ public class AdapterThietBi extends ArrayAdapter<ThietBiEntity> {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 xoaThietBi_API(maTB);
             }
-
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(context, "Xóa chi tiết thiết bị thất bại!", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
     private void thongBaoThanhCong(int gravity, String text) {
+        //xử lý vị trí của dialog
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.activity_dialog_tbthanhcong);
+
+        Window window = dialog.getWindow();
+        if (window == null)
+            return;
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+
+        //click ra bên ngoài để tắt dialog
+        if (Gravity.CENTER == gravity) {
+            dialog.setCancelable(true);
+        } else {
+            dialog.setCancelable(true);
+        }
+        TextView tvThongBao = dialog.findViewById(R.id.tvThongBao);
+        tvThongBao.setText(text);
+        dialog.show();
+    }
+    private void thongBaoThatBai(int gravity, String text) {
         //xử lý vị trí của dialog
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
