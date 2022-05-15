@@ -90,43 +90,22 @@ public class ChiTietDatActivity extends AppCompatActivity {
         setControl();
         setEvent();
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.activity_menu_ctsd,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.itemCTD:
-                Toast.makeText(this, "click item 2", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.itemCTSD:
-                Toast.makeText(this, "click item 1", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(ChiTietDatActivity.this,ChiTietSDActivity.class));
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void setControl() {
         lvChiTietD = findViewById(R.id.lvChiTietD);
         pbLoad = findViewById(R.id.pbLoad);
         svCTSD = findViewById(R.id.svCTSD);
-        //imbBack = findViewById(R.id.imbBackCTD);
+        imbBack = findViewById(R.id.imbBackCTD);
         btnDatCTTB = findViewById(R.id.btnDatCTTB);
     }
 
     private void setEvent() {
         getDSChiTiet();
-        /*imbBack.setOnClickListener(new View.OnClickListener() {
+        imbBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //finish();
+                finish();
             }
-        });*/
+        });
         svCTSD.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
