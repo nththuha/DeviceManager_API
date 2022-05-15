@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ import com.example.devicemanager_api.Entity.PhongHocEntity;
 import com.example.devicemanager_api.Entity.ThietBiEntity;
 import com.example.devicemanager_api.R;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +44,8 @@ import retrofit2.Response;
 public class AdapterChiTietDat extends ArrayAdapter<ChiTietDatEntity> {
 
     Context context;
+    Date date;
+    long millis = System.currentTimeMillis();
     int resource;
     int slmuon = 0, sldat = 0, sldu = 0, tongsl = 0,slmuonM;
     ArrayList<ChiTietDatEntity> data;
@@ -101,7 +105,7 @@ public class AdapterChiTietDat extends ArrayAdapter<ChiTietDatEntity> {
             public boolean onLongClick(View view) {
                 llClickItem.setBackgroundResource(R.drawable.activity_onclick_item);
                 ((ChiTietDatActivity) context).getDSChiTiet();
-                dialogTraThietBi(Gravity.CENTER,chiTietDat);
+                hienThiChon(Gravity.CENTER,chiTietDat);
                 return true;
             }
         });
@@ -130,6 +134,7 @@ public class AdapterChiTietDat extends ArrayAdapter<ChiTietDatEntity> {
             dialog.setCancelable(false);
         }
 
+        TextView tvTitle = dialog.findViewById(R.id.tvTitleMuonTB);
         TextView tvMaPhong = dialog.findViewById(R.id.tvMaPhongT);
         TextView tvMaThietBi = dialog.findViewById(R.id.tvMaThietBiT);
         TextView tvNgayMuon = dialog.findViewById(R.id.tvNgayMuon);
@@ -138,6 +143,9 @@ public class AdapterChiTietDat extends ArrayAdapter<ChiTietDatEntity> {
         btnTra = dialog.findViewById(R.id.btnTra);
         btnHuyT = dialog.findViewById(R.id.btnHuyT);
 
+        tvTitle.setText("HỦY ĐẶT THIẾT BỊ THEO PHÒNG");
+        btnTra.setText("Đồng ý");
+        btnHuyT.setText("Thoát");
         tvMaPhong.setText(chiTietDat.getMaPhong());
         tvMaThietBi.setText(chiTietDat.getMaTB());
         tvNgayMuon.setText(chiTietDat.getNgayD());
@@ -253,7 +261,7 @@ public class AdapterChiTietDat extends ArrayAdapter<ChiTietDatEntity> {
                                     ChiTietSDAPI.apiChiTietSDService.laySoLuongTheoMaTB(thietBiEntity.getMaTB()).enqueue(new Callback<List<ChiTietSDEntity>>() {
                                         @Override
                                         public void onResponse(Call<List<ChiTietSDEntity>> call, Response<List<ChiTietSDEntity>> response) {
-                                            int sldat=0,slmuon=0,tongsl=0,sldu=0;
+                                            int sldat = 0, slmuon = 0,tongsl = 0,sldu = 0;
                                             chiTietSDs = new ArrayList<>();
                                             if (response.isSuccessful()){
                                                 chiTietSDs = (ArrayList<ChiTietSDEntity>) response.body();
@@ -332,7 +340,8 @@ public class AdapterChiTietDat extends ArrayAdapter<ChiTietDatEntity> {
                 }
                 else{
                     suaChiTietDat(new ChiTietDatEntity(chiTietDat.getIdCTD(),chiTietDat.getNgayD(),slmuon,chiTietDat.getMaTB(),chiTietDat.getMaPhong()));
-                    thongBaoThanhCong(Gravity.CENTER,"Trả thiết bị thành công!");
+                    //thongBaoThanhCong(Gravity.CENTER,"Hủy đặt thiết bị thành công!");
+                    thongBaoThanhCong(Gravity.CENTER,"Hủy đặt "+ sltra + "/" + slmuonM +" thiết bị thành công!");
                     txtSoLuongT.setText("");
                     tvSoLuongM.setText("/" + slmuon);
                     dialog.dismiss();
@@ -346,6 +355,67 @@ public class AdapterChiTietDat extends ArrayAdapter<ChiTietDatEntity> {
             }
         });
         dialog.show();
+    }
+    private void hienThiChon(int gravity,ChiTietDatEntity chiTietDat) {
+        //xử lý vị trí của dialog
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.activity_dialog_chon);
+
+        Window window = dialog.getWindow();
+        if (window == null)
+            return;
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+
+        //click ra bên ngoài để tắt dialog
+        if (Gravity.CENTER == gravity) {
+            dialog.setCancelable(true);
+        } else {
+            dialog.setCancelable(true);
+        }
+        Button btnMuon = dialog.findViewById(R.id.btnChonMuon);
+        Button btnHuyDat = dialog.findViewById(R.id.btnChonHuyDat);
+
+        btnMuon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                date = new Date(millis);
+                themCTSDvaoDB(new ChiTietSDEntity(2, date.toString(), chiTietDat.getSoLuongD(), chiTietDat.getMaTB(),chiTietDat.getMaPhong()));
+                xoaChiTietDat(chiTietDat.getIdCTD());
+                ((ChiTietDatActivity) context).getDSChiTiet();
+                dialog.dismiss();
+            }
+        });
+        btnHuyDat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogTraThietBi(Gravity.CENTER, chiTietDat);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+    private void themCTSDvaoDB(ChiTietSDEntity chiTietSD) {
+        ChiTietSDAPI.apiChiTietSDService.themChiTietSD(chiTietSD).enqueue(new Callback<ChiTietSDEntity>() {
+            @Override
+            public void onResponse(Call<ChiTietSDEntity> call, Response<ChiTietSDEntity> response) {
+                if (response.isSuccessful()) {
+                    ((ChiTietDatActivity) context).getDSChiTiet();
+                    thongBaoThanhCong(Gravity.CENTER,"Mượn "+ chiTietSD.getSoLuongSD()+" thiết bị "+ chiTietSD.getMaTB() +" đã đặt trước thành công!");
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ChiTietSDEntity> call, Throwable t) {
+                thongBaoThanhCong(Gravity.CENTER, "Mượn " + chiTietSD.getMaTB() + " thất bại!");
+            }
+        });
     }
     public void xoaChiTietDat(int idCTD) {
         ChiTietDatAPI.apiChiTietDatService.xoaChiTietDat(idCTD).enqueue(new Callback<Void>() {
