@@ -21,10 +21,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.devicemanager_api.API.ChiTietDatAPI;
 import com.example.devicemanager_api.API.ChiTietSDAPI;
 import com.example.devicemanager_api.API.PhongHocAPI;
 import com.example.devicemanager_api.API.ThietBiAPI;
 import com.example.devicemanager_api.Controller.ChiTietSDActivity;
+import com.example.devicemanager_api.Entity.ChiTietDatEntity;
 import com.example.devicemanager_api.Entity.ChiTietSDEntity;
 import com.example.devicemanager_api.Entity.PhongHocEntity;
 import com.example.devicemanager_api.Entity.ThietBiEntity;
@@ -43,6 +45,7 @@ public class AdapterChiTietSD extends ArrayAdapter<ChiTietSDEntity> {
     int slmuon = 0, sldu = 0, tongsl = 0, slmuonM;
     ArrayList<ChiTietSDEntity> data;
     ArrayList<ChiTietSDEntity> chiTietSDs;
+    ArrayList<ChiTietDatEntity> chiTietDs;
     PhongHocEntity phongHocEntity;
     ThietBiEntity thietBiEntity;
     ThietBiEntity thietBi;
@@ -205,7 +208,7 @@ public class AdapterChiTietSD extends ArrayAdapter<ChiTietSDEntity> {
         tvMaTBCTmuon.setText(chiTietSD.getMaTB());
         getThietBi(chiTietSD.getMaTB());
         tvSoLuongCTmuon.setText(chiTietSD.getSoLuongSD()+"");
-        tvNgayCTmuon.setText(chiTietSD.getNgaySD().toString());
+        tvNgayCTmuon.setText(chiTietSD.getNgaySD());
 
         dialog.show();
     }
@@ -247,13 +250,32 @@ public class AdapterChiTietSD extends ArrayAdapter<ChiTietSDEntity> {
                                 chiTietSDs = new ArrayList<>();
                                 if(response.isSuccessful()){
                                     chiTietSDs = (ArrayList<ChiTietSDEntity>) response.body();
-                                    for(ChiTietSDEntity ctsd : chiTietSDs){
-                                        slmuon += ctsd.getSoLuongSD();
-                                    }
-                                    //Log.d("slmmm", "onResponse: "+slmuon);
-                                    tongsl = thietBiEntity.getSoLuong();
-                                    sldu = tongsl - slmuon;
-                                    tvSoLuongCTconlai.setText(sldu+"");
+                                    ChiTietDatAPI.apiChiTietDatService.layDSTheoMaTBD(thietBiEntity.getMaTB()).enqueue(new Callback<List<ChiTietDatEntity>>() {
+                                        @Override
+                                        public void onResponse(Call<List<ChiTietDatEntity>> call, Response<List<ChiTietDatEntity>> response) {
+                                            int sldat = 0, slmuon = 0,tongsl = 0,sldu = 0;
+                                            chiTietDs = new ArrayList<>();
+                                            if(response.isSuccessful()){
+                                                chiTietDs = (ArrayList<ChiTietDatEntity>) response.body();
+                                                for(ChiTietDatEntity ctd : chiTietDs){
+                                                    sldat += ctd.getSoLuongD();
+                                                }
+                                                for(ChiTietSDEntity ctsd : chiTietSDs){
+                                                    slmuon += ctsd.getSoLuongSD();
+                                                }
+                                                //Log.d("slmmm", "onResponse: "+slmuon);
+                                                tongsl = thietBiEntity.getSoLuong();
+                                                sldu = tongsl - slmuon - sldat;
+                                                tvSoLuongCTconlai.setText(sldu+"");
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<List<ChiTietDatEntity>> call, Throwable t) {
+
+                                        }
+                                    });
+
                                 }
                             }
                             @Override
@@ -314,7 +336,7 @@ public class AdapterChiTietSD extends ArrayAdapter<ChiTietSDEntity> {
                 }
                 else{
                     suaChiTietSD(new ChiTietSDEntity(chiTietSD.getIdCTSD(),chiTietSD.getNgaySD(),slmuon,chiTietSD.getMaTB(),chiTietSD.getMaPhong()));
-                    thongBaoThanhCong(Gravity.CENTER,"Trả thiết bị thành công!");
+                    thongBaoThanhCong(Gravity.CENTER,"Trả "+ sltra + "/" + slmuonM +" thiết bị thành công!");
                     txtSoLuongT.setText("");
                     tvSoLuongM.setText("/" + slmuon);
                     dialog.dismiss();
