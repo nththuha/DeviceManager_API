@@ -81,6 +81,13 @@ public class ChiTietSDActivity extends AppCompatActivity {
         setControl();
         setEvent();
     }
+
+    @Override
+    protected void onRestart() {
+        getDSChiTiet();
+        super.onRestart();
+    }
+
     private void setControl() {
         lvChiTietSD = findViewById(R.id.lvChiTietSD);
         pbLoad = findViewById(R.id.pbLoad);

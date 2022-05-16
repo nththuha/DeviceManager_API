@@ -138,8 +138,8 @@ public class ChiTietDatActivity extends AppCompatActivity {
         imbBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ChiTietDatActivity.this, ChiTietSDActivity.class));
-                //finish();
+                //startActivity(new Intent(ChiTietDatActivity.this, ChiTietSDActivity.class));
+                finish();
             }
         });
         svCTSD.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
