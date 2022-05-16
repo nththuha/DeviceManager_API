@@ -16,17 +16,21 @@
         app:layout_constraintBottom_toTopOf="@id/svCTSD"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_weight="3">
 
         <ImageButton
             android:id="@+id/imbBackCTSD"
             style="@style/style_img_btnback"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-        <!--android:background="@color/blue_100"-->
-
         <TextView
             style="@style/style_tieude_QuanLy"
             android:text="CHI TIẾT SỬ DỤNG" />
+
+        <ImageButton
+            android:id="@+id/imbNextCTSD"
+            style="@style/style_img_btnnext"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
     </androidx.appcompat.widget.Toolbar>
 
     <SearchView

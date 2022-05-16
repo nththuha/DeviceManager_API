@@ -8,9 +8,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -25,7 +22,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -59,7 +55,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
     Spinner spMaPhong, spMaThietBi;
     ProgressBar pbLoad;
     SearchView svCTSD;
-    ImageButton imbBack;
+    ImageButton imbBack, imbNext;
     Button btnMuon, btnHuyM;
     Button btnMuonCTTB;
     EditText txtSoLuongM;
@@ -85,44 +81,27 @@ public class ChiTietSDActivity extends AppCompatActivity {
         setControl();
         setEvent();
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.activity_menu_ctsd, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.itemCTSD:
-                Toast.makeText(this, "click item 1", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.itemCTD:
-                Toast.makeText(this, "click item 2", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(ChiTietSDActivity.this, ChiTietDatActivity.class));
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void setControl() {
         lvChiTietSD = findViewById(R.id.lvChiTietSD);
         pbLoad = findViewById(R.id.pbLoad);
         svCTSD = findViewById(R.id.svCTSD);
         imbBack = findViewById(R.id.imbBackCTSD);
+        imbNext = findViewById(R.id.imbNextCTSD);
         btnMuonCTTB = findViewById(R.id.btnMuonCTTB);
         btnHuyM = findViewById(R.id.btnHuyM);
     }
-
     private void setEvent() {
         getDSChiTiet();
         imbBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(ChiTietSDActivity.this, HomeActivity.class));
                 finish();
+            }
+        });
+        imbNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ChiTietSDActivity.this, ChiTietDatActivity.class));
             }
         });
         svCTSD.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -339,7 +318,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
             public void onClick(View view) {
                 sl = Integer.parseInt(txtSoLuongM.getText().toString());
                 if (sl <= 0) {
-                    Toast.makeText(ChiTietSDActivity.this, "Số lượng mượn phải lớn hơn 0!", Toast.LENGTH_SHORT);
+                    Toast.makeText(ChiTietSDActivity.this, "Số lượng mượn phải lớn hơn 0!", Toast.LENGTH_SHORT).show();
                     txtSoLuongM.setText("");
                     return;
                 }
@@ -369,7 +348,7 @@ public class ChiTietSDActivity extends AppCompatActivity {
                                         }
                                         sldu = tongsl - slmuon - sldat;
                                         if (sl > sldu) {
-                                            Toast.makeText(ChiTietSDActivity.this, "Số lượng mượn ít hơn số lượng hiện tại!", Toast.LENGTH_SHORT);
+                                            Toast.makeText(ChiTietSDActivity.this, "Số lượng mượn ít hơn số lượng hiện tại!", Toast.LENGTH_SHORT).show();
                                             txtSoLuongM.setText("");
                                             return;
                                         }

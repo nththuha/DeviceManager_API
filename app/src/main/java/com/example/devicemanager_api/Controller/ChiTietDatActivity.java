@@ -2,6 +2,8 @@ package com.example.devicemanager_api.Controller;
 
 import static java.sql.Date.*;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +21,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -49,6 +52,7 @@ import com.example.devicemanager_api.R;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -57,6 +61,7 @@ import retrofit2.Response;
 
 public class ChiTietDatActivity extends AppCompatActivity {
     Context context;
+    DatePickerDialog datePickerDialog;
     Date date;
     long millis = System.currentTimeMillis();
 
@@ -68,7 +73,7 @@ public class ChiTietDatActivity extends AppCompatActivity {
     Button btnDat, btnHuyD;
     Button btnDatCTTB;
     EditText txtSoLuongM,txtNgayD;
-    TextView tvNgay, tvSoLuongDu;
+    TextView tvSoLuongDu;
 
     AdapterChiTietDat adapterChiTietDat;
     AdapterMaPhong adapterMaPhong;
@@ -80,6 +85,7 @@ public class ChiTietDatActivity extends AppCompatActivity {
     String maPhong = "";
     String maTB = "";
     int sl = 0;
+    int lastYear, lastMonth, lastDay;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,43 +96,51 @@ public class ChiTietDatActivity extends AppCompatActivity {
         setControl();
         setEvent();
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.activity_menu_ctsd,menu);
-        return true;
-    }
+    public Boolean checkNgayDat(String lastDate){
+        date = new Date(millis);
+        String nowDate = date.toString();
+        String[] sLastDate = lastDate.split("-");
+        String[] sNowDate = nowDate.split("-");
+        int yL = Integer.parseInt(sLastDate[0]);
+        int mL = Integer.parseInt(sLastDate[1]);
+        int dL = Integer.parseInt(sLastDate[2]);
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.itemCTD:
-                Toast.makeText(this, "click item 2", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.itemCTSD:
-                Toast.makeText(this, "click item 1", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(ChiTietDatActivity.this,ChiTietSDActivity.class));
-                return true;
+        int yN = Integer.parseInt(sNowDate[0]);
+        int mN = Integer.parseInt(sNowDate[1]);
+        int dN = Integer.parseInt(sNowDate[2]);
+        if(lastDate.equals(nowDate)){
+            return false;
         }
-        return super.onOptionsItemSelected(item);
+        if(yL == yN ){
+            if(mL == mN )
+                if(dL > dN)
+                    return true;
+            else if(mL > mN){
+                    return true;
+                }
+            return false;
+        }
+        else if(yL >= yN ){
+            return true;
+        }
+        return false;
     }
-
     private void setControl() {
         lvChiTietD = findViewById(R.id.lvChiTietD);
         pbLoad = findViewById(R.id.pbLoad);
         svCTSD = findViewById(R.id.svCTSD);
-        //imbBack = findViewById(R.id.imbBackCTD);
+        imbBack = findViewById(R.id.imbBackCTD);
         btnDatCTTB = findViewById(R.id.btnDatCTTB);
     }
 
     private void setEvent() {
         getDSChiTiet();
-        /*imbBack.setOnClickListener(new View.OnClickListener() {
+        imbBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //finish();
+                finish();
             }
-        });*/
+        });
         svCTSD.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -328,18 +342,28 @@ public class ChiTietDatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 sl = Integer.parseInt(txtSoLuongM.getText().toString());
+                String[] strNgay2 = txtNgayD.getText().toString().trim().split("/");
+                if(strNgay2.length > 0){
+                    txtNgayD.setText(strNgay2[0]+"-"+strNgay2[1]+"-"+strNgay2[2]);
+                }
                 String ngayD = txtNgayD.getText().toString().trim();
                 if(ngayD.isEmpty()){
-                    Toast.makeText(ChiTietDatActivity.this, "Vui lòng nhập ngày đặt!", Toast.LENGTH_SHORT);
+                    Toast.makeText(ChiTietDatActivity.this, "Vui lòng nhập ngày đặt!", Toast.LENGTH_SHORT).show();
+                    txtNgayD.setText("");
                     return;
                 }
-                if(ngayD.equals(date.toString())){
-                    Toast.makeText(ChiTietDatActivity.this, "Vui lòng nhập ngày đặt lớn hơn ngày hiện tại!", Toast.LENGTH_SHORT);
+                if(checkNgayDat(ngayD) == false){
+                    Toast.makeText(ChiTietDatActivity.this, "Vui lòng nhập ngày đặt lớn hơn ngày hiện tại!", Toast.LENGTH_SHORT).show();
+                    txtNgayD.setText("");
+                    return;
+                }
+                if(txtSoLuongM.getText().toString().isEmpty()){
+                    Toast.makeText(ChiTietDatActivity.this, "Vui lòng nhập vào số lượng!", Toast.LENGTH_SHORT).show();
                     txtNgayD.setText("");
                     return;
                 }
                 if (sl <= 0) {
-                    Toast.makeText(ChiTietDatActivity.this, "Số lượng đặt phải lớn hơn 0!", Toast.LENGTH_SHORT);
+                    Toast.makeText(ChiTietDatActivity.this, "Số lượng đặt phải lớn hơn 0!", Toast.LENGTH_SHORT).show();
                     txtSoLuongM.setText("");
                     return;
                 }
@@ -369,7 +393,7 @@ public class ChiTietDatActivity extends AppCompatActivity {
                                         }
                                         sldu = tongsl - slmuon - sldat;
                                         if (sl > sldu) {
-                                            Toast.makeText(ChiTietDatActivity.this, "Số lượng đặt ít hơn số lượng hiện tại!", Toast.LENGTH_SHORT);
+                                            Toast.makeText(ChiTietDatActivity.this, "Số lượng đặt ít hơn số lượng hiện tại!", Toast.LENGTH_SHORT).show();
                                             txtSoLuongM.setText("");
                                             return;
                                         }
@@ -458,3 +482,18 @@ public class ChiTietDatActivity extends AppCompatActivity {
         });
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

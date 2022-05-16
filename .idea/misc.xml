@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/drawable-v24/ic_arrow_back.xml" value="0.149" />
+        <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/drawable/ic_next.xml" value="0.149" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_chi_tiet_dat.xml" value="0.25" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_chitiet_dat.xml" value="0.2" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_chitietsd.xml" value="0.17164179104477612" />

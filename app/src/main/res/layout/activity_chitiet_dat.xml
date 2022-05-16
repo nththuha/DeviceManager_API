@@ -18,10 +18,10 @@ tools:context=".Controller.ChiTietDatActivity">
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toTopOf="parent">
 
-    <!--<ImageButton
+    <ImageButton
         android:id="@+id/imbBackCTD"
         style="@style/style_img_btnback"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />-->
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
     <TextView
         style="@style/style_tieude_QuanLy"
         android:text="CHI TIẾT ĐẶT" />
