@@ -105,13 +105,22 @@ public class ChiTietDatActivity extends AppCompatActivity {
         int mL = Integer.parseInt(sLastDate[1]);
         int dL = Integer.parseInt(sLastDate[2]);
 
-        int yN = Integer.parseInt(sLastDate[0]);
-        int mN = Integer.parseInt(sLastDate[1]);
-        int dN = Integer.parseInt(sLastDate[2]);
+        int yN = Integer.parseInt(sNowDate[0]);
+        int mN = Integer.parseInt(sNowDate[1]);
+        int dN = Integer.parseInt(sNowDate[2]);
         if(lastDate.equals(nowDate)){
-            return true;
+            return false;
         }
-        if(yL < yN || mL < mN || dL < dN){
+        if(yL == yN ){
+            if(mL == mN )
+                if(dL > dN)
+                    return true;
+            else if(mL > mN){
+                    return true;
+                }
+            return false;
+        }
+        else if(yL >= yN ){
             return true;
         }
         return false;
@@ -339,13 +348,13 @@ public class ChiTietDatActivity extends AppCompatActivity {
                     txtNgayD.setText("");
                     return;
                 }
-                if(checkNgayDat(ngayD)){
+                if(checkNgayDat(ngayD) == false){
                     Toast.makeText(ChiTietDatActivity.this, "Vui lòng nhập ngày đặt lớn hơn ngày hiện tại!", Toast.LENGTH_SHORT).show();
                     txtNgayD.setText("");
                     return;
                 }
                 if(txtSoLuongM.getText().toString().isEmpty()){
-                    Toast.makeText(ChiTietDatActivity.this, "Vui lòng nhập ngày số lượng!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChiTietDatActivity.this, "Vui lòng nhập vào số lượng!", Toast.LENGTH_SHORT).show();
                     txtNgayD.setText("");
                     return;
                 }
