@@ -3,8 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/drawable-v24/ic_arrow_back.xml" value="0.149" />
-        <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/drawable/ic_next.xml" value="0.149" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_chi_tiet_dat.xml" value="0.25" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_chitiet_dat.xml" value="0.2" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/activity_chitietsd.xml" value="0.17164179104477612" />
@@ -31,6 +29,8 @@
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/layout/spinner_matb_ctsd.xml" value="0.24895833333333334" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/menu/activity_menu_ctsd.xml" value="0.1" />
         <entry key="..\:/Android Studio/DeviceManager_API/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_chitiet_dat.xml" value="0.24320652173913043" />
+        <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_dat_tb.xml" value="0.13541666666666666" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_logout.xml" value="0.23958333333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_tbthanhcong.xml" value="0.23958333333333334" />
         <entry key="..\:/ThuHa/Android/DeviceManager_API/app/src/main/res/layout/activity_dialog_them_sua_ph.xml" value="0.23958333333333334" />

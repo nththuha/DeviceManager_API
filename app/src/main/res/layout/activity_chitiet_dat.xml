@@ -69,7 +69,7 @@ tools:context=".Controller.ChiTietDatActivity">
         style="@style/style_ten_ctsd"
         android:layout_width="0dp"
         android:layout_weight="2"
-        android:text="Số lượng mượn" />
+        android:text="Số lượng đặt" />
 </LinearLayout>
 
 <LinearLayout
