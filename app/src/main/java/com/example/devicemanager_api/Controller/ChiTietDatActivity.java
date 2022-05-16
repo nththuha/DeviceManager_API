@@ -342,6 +342,10 @@ public class ChiTietDatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 sl = Integer.parseInt(txtSoLuongM.getText().toString());
+                String[] strNgay2 = txtNgayD.getText().toString().trim().split("/");
+                if(strNgay2.length > 0){
+                    txtNgayD.setText(strNgay2[0]+"-"+strNgay2[1]+"-"+strNgay2[2]);
+                }
                 String ngayD = txtNgayD.getText().toString().trim();
                 if(ngayD.isEmpty()){
                     Toast.makeText(ChiTietDatActivity.this, "Vui lòng nhập ngày đặt!", Toast.LENGTH_SHORT).show();
