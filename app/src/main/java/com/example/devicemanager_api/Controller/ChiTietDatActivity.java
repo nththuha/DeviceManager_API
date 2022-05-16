@@ -138,7 +138,8 @@ public class ChiTietDatActivity extends AppCompatActivity {
         imbBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                startActivity(new Intent(ChiTietDatActivity.this, ChiTietSDActivity.class));
+                //finish();
             }
         });
         svCTSD.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -341,9 +342,17 @@ public class ChiTietDatActivity extends AppCompatActivity {
         btnDat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int check = 0;
                 sl = Integer.parseInt(txtSoLuongM.getText().toString());
-                String[] strNgay2 = txtNgayD.getText().toString().trim().split("/");
-                if(strNgay2.length > 0){
+                String strNgay = txtNgayD.getText().toString().trim();
+                if(strNgay.charAt(4) == '-'){
+                    check = 0;
+                }
+                if(strNgay.charAt(4) == '/'){
+                    check = 1;
+                }
+                if(check == 1){
+                    String[] strNgay2 = txtNgayD.getText().toString().trim().split("/");
                     txtNgayD.setText(strNgay2[0]+"-"+strNgay2[1]+"-"+strNgay2[2]);
                 }
                 String ngayD = txtNgayD.getText().toString().trim();

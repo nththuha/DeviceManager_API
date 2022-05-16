@@ -48,86 +48,46 @@
             android:layout_gravity="center"
             android:text="Avatar" />
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_marginTop="20dp"
-            android:weightSum="3">
+            style="@style/style_lltaikhoan">
             <TextView
-                android:layout_marginStart="5dp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/maNV"/>
+                android:text="@string/maNV"
+                style="@style/style_stringtk" />
             <TextView
                 android:id="@+id/tvMaNVTK"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:layout_weight="2"/>
+                style="@style/style_textviewtk" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_marginTop="15dp"
-            android:weightSum="3">
+            style="@style/style_lltaikhoan">
             <TextView
-                android:layout_marginStart="5dp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/matKhau"/>
+                android:text="@string/matKhau"
+                style="@style/style_stringtk" />
             <TextView
                 android:id="@+id/tvMatKhauTK"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:textColor="@color/black"
+                style="@style/style_textviewtk"
                 android:inputType="textPassword"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_marginTop="15dp"
-            android:weightSum="3">
+            style="@style/style_lltaikhoan">
             <TextView
-                android:layout_marginStart="5dp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/email"/>
+                android:text="@string/email"
+                style="@style/style_stringtk" />
             <TextView
                 android:id="@+id/tvEmailTK"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:layout_weight="2"/>
+                style="@style/style_textviewtk" />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_marginTop="15dp"
-            android:weightSum="3">
+            style="@style/style_lltaikhoan">
             <TextView
-                android:layout_marginStart="5dp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/chucVu"/>
+                android:text="@string/chucVu"
+                style="@style/style_stringtk" />
             <TextView
                 android:id="@+id/tvchucVuTK"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:layout_weight="2"/>
+                style="@style/style_textviewtk" />
         </LinearLayout>
 
     </LinearLayout>
